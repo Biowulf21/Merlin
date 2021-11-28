@@ -36,7 +36,6 @@ class Ui_MainWindow(object):
         self.QR_Image.setMinimumSize(QtCore.QSize(100, 300))
         self.QR_Image.setStyleSheet("")
         self.QR_Image.setText("")
-        self.QR_Image.setPixmap(QtGui.QPixmap(":/QR/james-QR.png"))
         self.QR_Image.setScaledContents(True)
         self.QR_Image.setObjectName("QR_Image")
         self.verticalLayout_2.addWidget(self.QR_Image)

@@ -1,5 +1,7 @@
 #GUI Imports
+from os import replace
 from re import sub
+from typing import OrderedDict
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 import sys
@@ -16,10 +18,14 @@ class UI(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        UI.UpdateEmailTextBox(self, "", "", "")
         self.show()
 
         self.ui.xuMailButton.clicked.connect(self.SearchUserID)
+        #print('back in main after email search')
         self.ui.lNameButton.clicked.connect(self.SearchLastName)
+        #print('back in main after last name search')
+        self.ui.selectSubButton.clicked.connect(self.SelectSubscriber)
 
     #def UpdateUserInfo(self):
 
@@ -55,8 +61,27 @@ class UI(QMainWindow):
         #UI.UpdateUserInfo(self)
         self.ui.xuMailLineEdit.clear()
         UI.updateUser(self,subscriber)
-        print("In Search Last Name")
+        #print("In Search Last Name")
         
+
+
+    def UpdateEmailTextBox(self, lname, claimDate, claimTime):
+
+        name = lname
+        date = str(claimDate)
+        time = str(claimTime)
+        
+        with open ("EmailBody.txt", 'r') as file:
+            body = file.read()
+            for word in (("NAME", name), ("DATE", date), ("TIME", time)):
+                body = body.replace(*word)
+                print(body)
+        
+        with open ("EmailSubject.txt", 'r') as file:
+            subject = file.read()
+        
+        self.ui.subjectLineEdit.setText(subject)
+        self.ui.emailBodyText.setText(body)
 
 
     def updateUser(self, subscriber):
@@ -67,6 +92,13 @@ class UI(QMainWindow):
         self.ui.claimDate.setText(subscriber.getDate)
         self.ui.claimTime.setText(subscriber.getTime)
         self.ui.status.setText(subscriber.getStatus)
+
+    def SelectSubscriber(self):
+        name = self.ui.fName.text()
+        date = self.ui.claimDate.text()
+        time = self.ui.claimTime.text()
+
+        self.UpdateEmailTextBox(name, date, time)
     
 
 

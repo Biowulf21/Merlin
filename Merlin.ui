@@ -46,9 +46,6 @@
            <property name="text">
             <string/>
            </property>
-           <property name="pixmap">
-            <pixmap resource="QR Resource.qrc">:/QR/james-QR.png</pixmap>
-           </property>
            <property name="scaledContents">
             <bool>true</bool>
            </property>
