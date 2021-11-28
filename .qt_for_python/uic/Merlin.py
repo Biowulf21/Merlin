@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/storage/James Codes/Python/CYB/Test/Merlin.ui'
+# Form implementation generated from reading ui file '/storage/James Codes/Python/CYB/Test/dist/Merlin/Merlin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -166,6 +166,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.verticalLayout = QtWidgets.QVBoxLayout()
         self.verticalLayout.setObjectName("verticalLayout")
+        self.receipientLabel = QtWidgets.QLabel(self.frame_3)
+        self.receipientLabel.setObjectName("receipientLabel")
+        self.verticalLayout.addWidget(self.receipientLabel)
+        self.receipentLineEdit = QtWidgets.QLineEdit(self.frame_3)
+        self.receipentLineEdit.setObjectName("receipentLineEdit")
+        self.verticalLayout.addWidget(self.receipentLineEdit)
         self.subjectLabel = QtWidgets.QLabel(self.frame_3)
         self.subjectLabel.setObjectName("subjectLabel")
         self.verticalLayout.addWidget(self.subjectLabel)
@@ -270,6 +276,8 @@ class Ui_MainWindow(object):
         self.lNameLineEdit.setPlaceholderText(_translate("MainWindow", "Enter Last Name"))
         self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Enter Different Email Address"))
         self.pushButton.setText(_translate("MainWindow", "Submit"))
+        self.receipientLabel.setText(_translate("MainWindow", "Receipient"))
+        self.receipentLineEdit.setPlaceholderText(_translate("MainWindow", "Receipient"))
         self.subjectLabel.setText(_translate("MainWindow", "Email Subject"))
         self.subjectLineEdit.setPlaceholderText(_translate("MainWindow", "Enter Email Subject"))
         self.bodyLabel.setText(_translate("MainWindow", "Email Body"))
