@@ -292,6 +292,20 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
+          <widget class="QLabel" name="receipientLabel">
+           <property name="text">
+            <string>Receipient</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="receipentLineEdit">
+           <property name="placeholderText">
+            <string>Receipient</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QLabel" name="subjectLabel">
            <property name="text">
             <string>Email Subject</string>
