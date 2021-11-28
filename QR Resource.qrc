@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="QR">
+    <file>james-QR.png</file>
+  </qresource>
+</RCC>
