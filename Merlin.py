@@ -4,18 +4,23 @@ from re import sub
 from typing import OrderedDict
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox
+from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 import sys
-from UI import Ui_MainWindow
 
+from UI import Ui_MainWindow
+from Ui_EmailBody_UI import Ui_EmailBodyWindow
+
+#module imports
 import Sheets
 import Subscriber
-import sendMail
+
 
 #email imports
-
 import smtplib
 from email.message import EmailMessage
+
+from Ui_SubjectEmail_UI import Ui_Dialog
+
 
 
 
@@ -26,21 +31,63 @@ class UI(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        #self.msg = sendMail.SendMessage()
-        UI.UpdateEmailTextBox(self, "", "", "")
-        self.show()
 
+
+
+        #Updates the UI of the Subscriber portion of the GUI
+        #Starts of with empty string
+        UI.UpdateEmailTextBox(self, "", "", "")
+        
+
+        #Declaring the Buttons
         self.ui.xuMailButton.clicked.connect(self.SearchUserID)
-        #print('back in main after email search')
         self.ui.lNameButton.clicked.connect(self.SearchLastName)
-        #print('back in main after last name search')
+
         self.ui.selectSubButton.clicked.connect(self.SelectSubscriber)
         self.ui.emailSendButton.clicked.connect(self.sendMessage)
 
-    #def UpdateUserInfo(self):
-    #TODO: Refactor and Modularize code
+        self.ui.actionEmail.triggered.connect(self.ChangeEmailTemplate)
+        self.ui.actionSubject.triggered.connect(self.ChangeSubjectTemplate)
 
-       # self.ui.fName.text() = 
+
+    def Change(self, x):
+        print('Dick')
+        #print(x)
+        with open ("EmailBody.txt", "w") as file:
+            file.write(x)
+#FIXME: TEXTEDIT FOR EDITING EMAIL TEMPLATE CAN'T BE SEEN BY OTHER METHODS AND THUS CAN'T WRITE TO FILE
+#WILL PROBABLY NEED TO REFACTOR SHITTY CODE YAWA
+    def ChangeEmailTemplate(self):
+
+        self.dlg = QDialog()
+        self.dlg.setWindowTitle("Edit Email")
+ 
+        self.window = Ui_EmailBodyWindow()
+        self.window.setupUi(self.dlg)
+ 
+        
+        with open ("EmailBody.txt", "r") as file:
+            body = file.read()
+            self.window.EmailTemplateTextEdit.setPlainText(body)
+            file.close()
+
+        print(self.emailText)
+        #self.window.emailTemplateSaveBtn.clicked.connect(lambda: self.Change(self.emailText))
+            
+
+        self.dlg.exec()
+        
+       # self.tmplt = ChangeTemplate.Template
+       # self.window = QtWidgets.QDialog()
+       # #Calls change email template method from Changetemplate file and uses self.window as argument
+       # self.tmplt.ChangeEmailTemplate(self, self.window)
+
+
+
+    def ChangeSubjectTemplate(self):
+        pass
+
+ 
     def SearchUserID(self):
         xuMail = self.ui.xuMailLineEdit.text()
         try:
@@ -56,6 +103,13 @@ class UI(QMainWindow):
             self.ui.lNameLineEdit.clear()
             UI.updateUser(self, subscriber)
         except:
+            self.box = QMessageBox()
+            self.box.setIcon(QMessageBox.Icon.Information)
+            self.box.setWindowTitle("Search Error")
+            self.box.setDetailedText("The search term is either not available in the Google sheets or is blank. Please enter a value that is in the database and try again.")
+            self.box.setInformativeText('You have entered an invalid or unavailable search term.')
+            self.box.setText('Change Search Value')
+            self.box.show()
             print("change value")
 
     def SearchLastName(self):
@@ -74,7 +128,14 @@ class UI(QMainWindow):
             self.ui.xuMailLineEdit.clear()
             UI.updateUser(self,subscriber)
         except:
-            print("Change value")
+            self.box = QMessageBox()
+            self.box.setIcon(QMessageBox.Icon.Information)
+            self.box.setWindowTitle("Search Error")
+            self.box.setDetailedText("The search term is either not available in the Google sheets or is blank. Please enter a value that is in the database and try again.")
+            self.box.setInformativeText('You have entered an invalid or unavailable search term.')
+            self.box.setText('Change Search Value')
+            self.box.show()
+            print("change value")
         
         
 
@@ -153,7 +214,6 @@ class UI(QMainWindow):
         #summary report 
         msgBox.setText("Message sent to " + receipient + " - " + sendName + " " + sendLName + " - " + receipient)
         msgBox.show()
-        print("Message sent to " + receipient + " - " + sendName + " " + sendLName + " - " + receipient)
         if len(failedTo) != 0:
             print("Failed to send to: ")
             print(*failedTo, sep = ", ")

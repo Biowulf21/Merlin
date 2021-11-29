@@ -4,7 +4,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 from pprint import pprint
 
-import sendMail
 
 
 SCOPES = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
@@ -33,7 +32,6 @@ def SearchID(query):
         #date = row[4]
         #time = row[5]
         #emailaddress = row[1]
-        #sendMail.advisory(name, date, time, emailaddress)
         return row
 
 def SearchLastName(query):
