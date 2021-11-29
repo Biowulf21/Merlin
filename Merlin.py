@@ -179,6 +179,8 @@ class UI(QMainWindow):
         self.ui.pNumber.setText(subscriber.getPhoneNumber)
         self.ui.claimDate.setText(subscriber.getDate)
         self.ui.claimTime.setText(subscriber.getTime)
+        self.status = subscriber.getStatus
+        #print(f"status is {subscriber.getStatus}")
         self.ui.status.setText(subscriber.getStatus)
 
     def SelectSubscriber(self):
@@ -189,6 +191,10 @@ class UI(QMainWindow):
 
         self.UpdateEmailTextBox(fname, date, time)
         self.ui.receipentLineEdit.setText(fname + " " + lname)
+
+
+    def UpdateStatus(self):
+        self.ui.status.setText("Notified")
 
 
     def sendMessage(self):
@@ -217,16 +223,21 @@ class UI(QMainWindow):
 
         try:
             with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-                smtp.login(sender, password)
-                smtp.send_message(message)
+                #smtp.login(sender, password)
+                #print('sending...')
+                #smtp.send_message(message)
+                Sheets.WriteStatus(receipient)
+                self.UpdateStatus()
+                #print('internet is slow')
+                msgBox.setText("Message sent to " + receipient + " - " + sendName + " " + sendLName + " - " + receipient)
+                msgBox.exec()
 
                 sent = sent+1
         except Exception as e:
             failedTo.append(sendTo)
         
         #summary report 
-        msgBox.setText("Message sent to " + receipient + " - " + sendName + " " + sendLName + " - " + receipient)
-        msgBox.show()
+
         if len(failedTo) != 0:
             print("Failed to send to: ")
             print(*failedTo, sep = ", ")
