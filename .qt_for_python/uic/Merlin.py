@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/storage/James Codes/Python/CYB/Test/dist/Merlin/Merlin.ui'
+# Form implementation generated from reading ui file '/storage/James Codes/Python/CYB/Test/Merlin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -91,6 +91,13 @@ class Ui_MainWindow(object):
         self.status.setText("")
         self.status.setObjectName("status")
         self.formLayout_2.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.status)
+        self.indexLabel = QtWidgets.QLabel(self.frame_2)
+        self.indexLabel.setObjectName("indexLabel")
+        self.formLayout_2.setWidget(7, QtWidgets.QFormLayout.LabelRole, self.indexLabel)
+        self.indexValue = QtWidgets.QLabel(self.frame_2)
+        self.indexValue.setText("")
+        self.indexValue.setObjectName("indexValue")
+        self.formLayout_2.setWidget(7, QtWidgets.QFormLayout.FieldRole, self.indexValue)
         self.verticalLayout_2.addLayout(self.formLayout_2)
         self.selectSubButton = QtWidgets.QPushButton(self.frame_2)
         self.selectSubButton.setObjectName("selectSubButton")
@@ -269,6 +276,7 @@ class Ui_MainWindow(object):
         self.claimDateLabel.setText(_translate("MainWindow", "Claim Date: "))
         self.claimTimeLabel.setText(_translate("MainWindow", "Claim Time: "))
         self.statusLabel.setText(_translate("MainWindow", "Status:"))
+        self.indexLabel.setText(_translate("MainWindow", "Index:"))
         self.selectSubButton.setText(_translate("MainWindow", "Select Subscriber"))
         self.xuMailLineEdit.setPlaceholderText(_translate("MainWindow", "Enter XU Mail"))
         self.lNameButton.setText(_translate("MainWindow", "Search"))
