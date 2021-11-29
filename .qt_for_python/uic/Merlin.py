@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/storage/James Codes/Python/CYB/Test/Merlin.ui'
+# Form implementation generated from reading ui file '/storage/James Codes/Python/CYB/Test/dist/Merlin/Merlin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
