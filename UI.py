@@ -269,7 +269,7 @@ class Ui_MainWindow(object):
         self.claimDateLabel.setText(_translate("MainWindow", "Claim Date: "))
         self.claimTimeLabel.setText(_translate("MainWindow", "Claim Time: "))
         self.statusLabel.setText(_translate("MainWindow", "Status:"))
-        self.selectSubButton.setText(_translate("MainWindow", "Select Subscriber"))
+        self.selectSubButton.setText(_translate("MainWindow", "Select Subscriber and Update"))
         self.xuMailLineEdit.setPlaceholderText(_translate("MainWindow", "Enter XU Mail"))
         self.lNameButton.setText(_translate("MainWindow", "Search"))
         self.xuMailButton.setText(_translate("MainWindow", "Search"))
