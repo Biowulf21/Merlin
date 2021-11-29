@@ -4,7 +4,7 @@ from re import sub
 from typing import OrderedDict
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
+from PyQt5.QtWidgets import QApplication, QDial, QDialog, QMainWindow, QMessageBox
 import sys
 
 from UI import Ui_MainWindow
@@ -50,48 +50,61 @@ class UI(QMainWindow):
         self.ui.actionSubject.triggered.connect(self.ChangeSubjectTemplate)
 
 
-    def Change(self, x):
-        print('Dick')
-        #print(x)
-        with open ("EmailBody.txt", "w") as file:
-            file.write(x)
-#FIXME: TEXTEDIT FOR EDITING EMAIL TEMPLATE CAN'T BE SEEN BY OTHER METHODS AND THUS CAN'T WRITE TO FILE
-#WILL PROBABLY NEED TO REFACTOR SHITTY CODE YAWA
+#FIXME: Program reads Template but when editing, not pressing the save button (just exiting by pressing escape) still updates the template
+#Same case for both updating the email body template and for the subject template
+
+    def ChangeSubjectTemplate(self):
+        self.dg = QDialog()
+        self.dg.setWindowTitle("Edit Email Subject")
+
+        self.win = Ui_Dialog()
+        self.win.setupUi(self.dg)
+
+        
+        with open ("EmailSubject.txt", "r") as file:
+           body = file.read()
+           self.win.subjectPlainTextEdit.setPlainText(body)
+           file.close()
+        self.dg.exec()
+
+        self.updatedSubject = self.win.subjectPlainTextEdit.toPlainText()
+        self.UpdateSubjectTemplate(self.updatedSubject)
+
+
     def ChangeEmailTemplate(self):
 
         self.dlg = QDialog()
-        self.dlg.setWindowTitle("Edit Email")
+        self.dlg.setWindowTitle("Edit Email Body")
  
         self.window = Ui_EmailBodyWindow()
         self.window.setupUi(self.dlg)
- 
-        
+
+        #The text box for the email template reads the appropriate text file so that any changes made can be written into the txt file for use later on
         with open ("EmailBody.txt", "r") as file:
-            body = file.read()
-            self.window.EmailTemplateTextEdit.setPlainText(body)
-            file.close()
-
-        print(self.emailText)
-        #self.window.emailTemplateSaveBtn.clicked.connect(lambda: self.Change(self.emailText))
-            
-
+           body = file.read()
+           self.window.EmailTemplateTextEdit.setPlainText(body)
+           file.close()
         self.dlg.exec()
-        
-       # self.tmplt = ChangeTemplate.Template
-       # self.window = QtWidgets.QDialog()
-       # #Calls change email template method from Changetemplate file and uses self.window as argument
-       # self.tmplt.ChangeEmailTemplate(self, self.window)
+
+        #getting the value of the textedit only works after the save button is pressed and the dialog is closed
+        self.updatedText = self.window.EmailTemplateTextEdit.toPlainText()
+        self.UpdateEmailTemplate(self.updatedText)
 
 
+    def UpdateEmailTemplate(self, x):
+        with open ('EmailBody.txt', 'w') as file:
+            file.write(self.updatedText)
 
-    def ChangeSubjectTemplate(self):
-        pass
+    def UpdateSubjectTemplate(self, x):
+        with open ('EmailSubject.txt', 'w') as file:
+            file.write(self.updatedSubject)
 
  
     def SearchUserID(self):
         xuMail = self.ui.xuMailLineEdit.text()
         try:
             subscriberData = Sheets.SearchID(xuMail)
+            #Segments the subscriber data list into individual pieces of information that can be used to change the UI as well as the email body message
             email = subscriberData[1]
             fname = subscriberData[2]
             lname = subscriberData[3]
