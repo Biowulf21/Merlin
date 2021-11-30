@@ -1,12 +1,18 @@
-import Subscriber
+import PyQt5
+from PyQt5.QtWidgets import QMessageBox
+
+
+
 import Sheets
+import Subscriber
+import Merlin
 
-class Search():
-    #FIXME: QLINEEDITS SHOULD CLEAR AFTER SEARCHING USING ANOTHER QLINEEDIT
-    def SearchUserID(self):
-        self.ui.lNameLineEdit.clear()
-        xuMail = self.ui.xuMailLineEdit.text()
-        subscriberData = Sheets.SearchID(xuMail)
+
+
+def SearchUserID(ID):
+    try:
+        subscriberData = Sheets.SearchID(ID)
+        #Segments the subscriber data list into individual pieces of information that can be used to change the UI as well as the email body message
         email = subscriberData[1]
         fname = subscriberData[2]
         lname = subscriberData[3]
@@ -14,15 +20,23 @@ class Search():
         time = subscriberData[5]
         phoneNumber = subscriberData[6]
         status = subscriberData[7]
-
         subscriber = Subscriber.Subscriber(fname, lname, email, date, time, phoneNumber, status)
-        self.Search.updateUser(self, subscriber)
+        print('abot dinhi')
+        return subscriber
+    except:
+        box = QMessageBox()
+        box.setIcon(QMessageBox.Icon.Information)
+        box.setWindowTitle("Search Error")
+        box.setDetailedText("The search term is either not available in the Google sheets or is blank. Please enter a value that is in the database and try again.")
+        box.setInformativeText('You have entered an invalid or unavailable search term.')
+        box.setText('Change Search Value')
+        box.show()
+        print("change value")
 
-    def SearchLastName(self):
-        self.ui.xuMail.clear()
-        #TODO: Search Function for last name should not be case sensitive
-        lastName = self.ui.lNameLineEdit.text()
-        subscriberData = Sheets.SearchLastName(lastName)
+def SearchLastName(surname):
+    try:
+        #chops up the data inside string to specific variables
+        subscriberData = Sheets.SearchLastName(surname)
         email = subscriberData[1]
         fname = subscriberData[2]
         lname = subscriberData[3]
@@ -30,18 +44,15 @@ class Search():
         time = subscriberData[5]
         phoneNumber = subscriberData[6]
         status = subscriberData[7]
-
+        #instantiates a subscriber object from the subscriber class
         subscriber = Subscriber.Subscriber(fname, lname, email, date, time, phoneNumber, status)
-        print(subscriber.getLastName)
-        #UI.UpdateUserInfo(self)
-        self.Search.updateUser(self,subscriber)
-
-
-    def updateUser(self, subscriber):
-        self.ui.lName.setText(subscriber.getLastName)
-        self.ui.fName.setText(subscriber.getFirstName)
-        self.ui.xuMail.setText(subscriber.getEmail)
-        self.ui.pNumber.setText(subscriber.getPhoneNumber)
-        self.ui.claimDate.setText(subscriber.getDate)
-        self.ui.claimTime.setText(subscriber.getTime)
-        self.ui.status.setText(subscriber.getStatus)
+        return subscriber
+    except:
+        box = QMessageBox()
+        box.setIcon(QMessageBox.Icon.Information)
+        box.setWindowTitle("Search Error")
+        box.setDetailedText("The search term is either not available in the Google sheets or is blank. Please enter a value that is in the database and try again.")
+        box.setInformativeText('You have entered an invalid or unavailable search term.')
+        box.setText('Change Search Value')
+        box.show()
+        print("change value")
