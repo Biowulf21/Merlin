@@ -483,7 +483,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item>
-           <widget class="QTableView" name="sentTableView"/>
+           <widget class="QListWidget" name="sentListWidget"/>
           </item>
           <item>
            <widget class="QLabel" name="failedTableLabel">
@@ -493,7 +493,7 @@ p, li { white-space: pre-wrap; }
            </widget>
           </item>
           <item>
-           <widget class="QTableView" name="failedTableView"/>
+           <widget class="QListWidget" name="failedListWidget"/>
           </item>
          </layout>
         </widget>

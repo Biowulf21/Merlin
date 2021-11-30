@@ -6,6 +6,7 @@ from pprint import pprint
 
 
 
+
 SCOPES = ["https://spreadsheets.google.com/feeds",'https://www.googleapis.com/auth/spreadsheets',"https://www.googleapis.com/auth/drive.file","https://www.googleapis.com/auth/drive"]
 SERVICE_ACCOUNT_FILE = 'cyb.json'
 
@@ -38,17 +39,15 @@ def searchUpdateStatus(query):
 
 
 def SearchID(query):
-    
-    #Searches for the right email in the XU mail column
-    col = sheet.col_values(2)
-    rownum = col.index(query) + 1 
-    row = sheet.row_values(rownum)
-    #print(row)
-    #name = row[2]
-    #date = row[4]
-    #time = row[5]
-    #emailaddress = row[1]
-    return row
+    try:
+        #Searches for the right email in the XU mail column
+        col = sheet.col_values(2)
+        rownum = col.index(query) + 1 
+        row = sheet.row_values(rownum)
+        return row
+    except:
+        failedRow = ["None",f"{query}", "None", "None", "None", "None", "None", "None"]
+        return failedRow
 
 def SearchLastName(query):
     col = sheet.col_values(4)

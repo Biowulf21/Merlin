@@ -73,11 +73,26 @@ class UI(QMainWindow):
        
         self.sendBulkEmails(listofReceipients)
 
+
+        #sends emails to a group of emails
     def sendBulkEmails(self, listofReceipients):
-        #sets the minimum or initial value or the progress bar
+        self.ui.sentListWidget.clear()
+        self.ui.failedListWidget.clear()
+        #list of emails that were sent successfuly
+        sentList = []
+
+        #list of emails that were unsucessfuly sent
+        unsentList = []
+
+
+
         #sets the maximum value of the progress bar to be equal to the length of the list of receipients
         self.ui.bulkEmailProgressBar.setMaximum(len(listofReceipients)+1)
+
+
         maxValue = len(listofReceipients)+1
+        #print(f"maxvalue is {maxValue}")
+        #sets the minimum or initial value or the progress bar
         progressValue = 1
       
         #reads the email subject text file and sets as the email subject line
@@ -89,26 +104,54 @@ class UI(QMainWindow):
             receipientInfo = Sheets.SearchID(receipient)
             print(f"receipient info is {receipientInfo}")
             #chops up information into individual variables
-            email = receipientInfo[1]
-            fname = receipientInfo[2]
-            lname = receipientInfo[3]
-            date = receipientInfo[4]
-            time = receipientInfo[5]
-            phoneNumber = receipientInfo[6]
-            status = receipientInfo[7]
             
-            #calls replacetemplate to replace NAME TIME AND DATE texts inside template
-            body = self.ReplaceTemplate(fname, date, time)
-            progressValue += 1
-            self.ui.bulkEmailProgressBar.setValue(progressValue)
-            print(progressValue)
-    
-            #print(f"receipient info is: {fname} {lname} - {email}")
-            
-            newStatus = SendMail.BulkEmailSender(subject, body, email, fname, lname)
+            if receipientInfo[7] != "None":
+                try:
+                    print('naa sa try')
+                    email = receipientInfo[1]
+                    fname = receipientInfo[2]
+                    lname = receipientInfo[3]
+                    date = receipientInfo[4]
+                    time = receipientInfo[5]
+                    phoneNumber = receipientInfo[6]
+                    status = receipientInfo[7]
 
-            self.UpdateStatus(newStatus)
-            sleep(0.5)
+                    #calls replacetemplate to replace NAME TIME AND DATE texts inside template
+                    body = self.ReplaceTemplate(fname, date, time)
+                    progressValue += 1
+                    print(f"progress value is {progressValue}")
+                    
+
+                    #print(f"receipient info is: {fname} {lname} - {email}")
+
+                    newStatus = SendMail.BulkEmailSender(subject, body, email, fname, lname)
+                    print(f"new status = {newStatus[1]}")
+                    if newStatus[1] == "Notified":
+                        sentList.append(newStatus[0])
+                    elif newStatus[1] == "Email Failed": 
+                        unsentList.append(newStatus[0])
+                    else:
+                        pass
+
+                    #self.UpdateStatus(newStatus)
+                    sleep(0.5)
+                
+                except:
+                    print('naa sa except')
+                    pass
+            else:
+                print('naa sa else')
+                unsentList.append(receipientInfo[1])
+                progressValue += 1
+            self.ui.bulkEmailProgressBar.setValue(progressValue)
+
+
+            print(f"sentList is {sentList}\n\n")
+            print(f"unsentList is {unsentList}")
+
+
+
+            
 
         msgBox = QMessageBox()
         msgBox.setIcon(QMessageBox.Icon.Information)
@@ -118,6 +161,8 @@ class UI(QMainWindow):
         if (progressValue == maxValue):
             sleep(1)
             self.ui.bulkEmailProgressBar.setValue(0)
+        self.ui.sentListWidget.addItems(sentList)
+        self.ui.failedListWidget.addItems(unsentList)
 
         
     def ReplaceTemplate(self, firstName, date, time):
@@ -225,6 +270,7 @@ class UI(QMainWindow):
 
 
     def sendMessage(self):
+        successSent = []
         subject = self.ui.subjectLineEdit.text()
         body = self.ui.emailBodyText.toPlainText()
         #print(f"body of the textEdit is {body}")
@@ -232,7 +278,9 @@ class UI(QMainWindow):
         sendName = self.ui.fName.text()
         sendLName = self.ui.lName.text()
         returnStatus = SendMail.sendEmail(subject, body, receipient, sendName, sendLName)
-        newStatus = returnStatus[2]
+        newStatus = returnStatus[1]
+        #successSent.append(returnStatus[0])
+        #print(f"list of successfully sent: {successSent}")
         self.UpdateStatus(newStatus)
 
 

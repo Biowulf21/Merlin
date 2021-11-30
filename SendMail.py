@@ -49,8 +49,12 @@ def BulkEmailSender(subject, body, email, firstName, lastName):
     password = "uisjoyfegjgudwpp"
     #print(str(all) + " recipients found.\n")
     sent = 0
+    
     sentList = []
-    failedTo = []; 
+    unsentList =[]
+    failedTo = []
+
+
     sendTo = email
     message = EmailMessage()
     message['Subject'] = subject
@@ -60,7 +64,6 @@ def BulkEmailSender(subject, body, email, firstName, lastName):
     try:
         with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
             #smtp.login(sender, password)
-            #print('sending...')
             #smtp.send_message(message)
             #Sheets.WriteStatus(email)
             ##msgBox.setText("Message sent to " + email + " - " + firstName + " " + lastName + " - " + email)
@@ -68,21 +71,20 @@ def BulkEmailSender(subject, body, email, firstName, lastName):
             sent = sent+1
             #FIXME: Should create a list of all receipients that have been sent an email and all receipients whose emails failed
             #FIXME: Status setting should be fixed as right now, there is no way on confirmting that a subscriber is alaready notified
+            
+            #append to successfuly sent emails and will return a list with an email that was successfuly sent as well as the notified status
             sentList.append(sendTo)
-            #print(body)
-           # return "Notified"
+            sentList.append("Notified")
+            #print(f"sentlist is: {sentList}")
+            return sentList
     except Exception as e:
         failedTo.append(sendTo)
+        #append to unsuccesfully sent emails and will return a list with an  email that was unsuccessfully sent as well as the "Email Failed status"
+        unsentList.append(sendTo)
+        unsentList.append('Email Failed')
         
-        #summary report 
-
+        #summary report
         if len(failedTo) != 0:
             print("Failed to send to: ")
             print(*failedTo, sep = ", ")
         #return "Not Notified"
-
-    returnList.append(sentList)
-    returnList.append(failedTo)
-    returnList.append("Notified")
-    print(returnList)
-    return returnList
