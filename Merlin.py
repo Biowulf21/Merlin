@@ -4,17 +4,16 @@ from re import sub
 from typing import OrderedDict
 from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QDial, QDialog, QMainWindow, QMessageBox
+from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 import sys
 
 from UI import Ui_MainWindow
 from Ui_EmailBody_UI import Ui_EmailBodyWindow
 
 #module imports
-import Sheets
-import Subscriber
 import Template
 import Search
+import SendMail
 
 
 #email imports
@@ -145,67 +144,26 @@ class UI(QMainWindow):
         self.ui.receipentLineEdit.setText(fname + " " + lname)
 
 
-    def UpdateStatus(self):
-        self.ui.status.setText("Notified")
-
-
     def sendMessage(self):
-        msgBox = QMessageBox()
-        msgBox.setWindowTitle("Message Successfully Sent")
-        
-        sender = "crusaderyearbook@xu.edu.ph"
-        password = "uisjoyfegjgudwpp"
-
         subject = self.ui.subjectLineEdit.text()
         body = self.ui.emailBodyText.toPlainText()
-        print(f"body of the textEdit is {body}")
+        #print(f"body of the textEdit is {body}")
         receipient = self.ui.xuMail.text()
         sendName = self.ui.fName.text()
         sendLName = self.ui.lName.text()
+        newStatus = SendMail.sendEmail(subject, body, receipient, sendName, sendLName)
+        self.UpdateStatus(newStatus)
 
-        #print(str(all) + " recipients found.\n")
-        sent = 0
-        failedTo = []; 
 
-        sendTo = receipient
-        message = EmailMessage()
-        message['Subject'] = subject
-        message['From'] = sender
-        message['To'] = sendTo
-        message.set_content(body)
 
-        try:
-            with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-                #smtp.login(sender, password)
-                #print('sending...')
-                #smtp.send_message(message)
-                Sheets.WriteStatus(receipient)
-                self.UpdateStatus()
-                #print('internet is slow')
-                msgBox.setText("Message sent to " + receipient + " - " + sendName + " " + sendLName + " - " + receipient)
-                msgBox.exec()
 
-                sent = sent+1
-        except Exception as e:
-            failedTo.append(sendTo)
-        
-        #summary report 
-
-        if len(failedTo) != 0:
-            print("Failed to send to: ")
-            print(*failedTo, sep = ", ")
-
+    def UpdateStatus(self, status):
+        print('updating status')
+        self.ui.status.setText(status)
+        print('after updating status')
 
 
     
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
