@@ -6,6 +6,7 @@ from PyQt5 import QtWidgets, uic
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 import sys
+from time import sleep
 
 from UI import Ui_MainWindow
 from Ui_EmailBody_UI import Ui_EmailBodyWindow
@@ -14,6 +15,7 @@ from Ui_EmailBody_UI import Ui_EmailBodyWindow
 import Template
 import Search
 import SendMail
+import Sheets
 
 
 #email imports
@@ -49,6 +51,58 @@ class UI(QMainWindow):
 
         self.ui.actionEmail.triggered.connect(self.ChangeEmailTemplate)
         self.ui.actionSubject.triggered.connect(self.ChangeSubjectTemplate)
+
+        self.ui.bulkEmailSender.clicked.connect(self.GetEmails)
+
+    def GetEmails(self):
+        listofReceipients = []
+        bulkEmails = self.ui.bulkEmailsTextEdit.toPlainText()
+        #gets each email from the text edit string and makes them individual elements inside List
+        listofReceipients = bulkEmails.split()
+        #print(f"text inside text Edit is {bulkEmails}")
+        #print(f"list is {listofReceipients}"
+        self.sendBulkEmails(listofReceipients)
+
+    def sendBulkEmails(self, listofReceipients):
+        #reads the email subject text file and sets as the email subject line
+        with open('EmailSubject.txt', 'r') as file:
+            subject = file.read()
+
+        for receipient in listofReceipients:
+            #gets the information of every receipient
+            receipientInfo = Sheets.SearchID(receipient)
+            print(f"receipient info is {receipientInfo}")
+            #chops up information into individual variables
+            email = receipientInfo[1]
+            fname = receipientInfo[2]
+            lname = receipientInfo[3]
+            date = receipientInfo[4]
+            time = receipientInfo[5]
+            phoneNumber = receipientInfo[6]
+            status = receipientInfo[7]
+            
+            #calls replacetemplate to replace NAME TIME AND DATE texts inside template
+            body = self.ReplaceTemplate(fname, date, time)
+    
+            print(f"receipient info is: {fname} {lname} - {email}")
+            newStatus = SendMail.BulkEmailSender(subject, body, email, fname, lname)
+            self.UpdateStatus(newStatus)
+            sleep(1)
+
+        msgBox = QMessageBox()
+        msgBox.setText('Emails Sent')
+        msgBox.exec()
+
+        
+    def ReplaceTemplate(self, firstName, date, time):
+        #reads the email body text file and sets as email body
+        with open ('EmailBody.txt', 'r') as file:
+            body = file.read()
+            #Changes all the instances of NAME, DATE and TIME that is in the template in the Emailbody.txt file
+            for word in (("NAME", firstName), ("DATE", date), ("TIME", time)):
+                body = body.replace(*word)
+            return body
+
 
 
 #FIXME: Program reads Template but when editing, not pressing the save button (just exiting by pressing escape) still updates the template
@@ -122,7 +176,7 @@ class UI(QMainWindow):
         self.ui.subjectLineEdit.setText(subject)
         self.ui.emailBodyText.setText(body)
 
-
+    #updates the subscriber information UI
     def updateUser(self, subscriber):
         self.ui.lName.setText(subscriber.getLastName)
         self.ui.fName.setText(subscriber.getFirstName)
