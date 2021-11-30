@@ -1,5 +1,8 @@
 
 #Subscriber Class
+from pyasn1.type.univ import Null
+
+
 class Subscriber():
 
     def __init__(self, fname, lname, email, date, time, phoneNumber, status):
@@ -36,5 +39,6 @@ class Subscriber():
     
     @property
     def getEmail(self):
+        self._Email == Null
         return self._Email
     
