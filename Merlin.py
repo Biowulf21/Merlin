@@ -13,6 +13,8 @@ from Ui_EmailBody_UI import Ui_EmailBodyWindow
 #module imports
 import Sheets
 import Subscriber
+import Template
+import Search
 
 
 #email imports
@@ -55,20 +57,14 @@ class UI(QMainWindow):
 
     def ChangeSubjectTemplate(self):
         self.dg = QDialog()
-        self.dg.setWindowTitle("Edit Email Subject")
-
         self.win = Ui_Dialog()
         self.win.setupUi(self.dg)
+        subjectTextEdit = self.win.subjectPlainTextEdit.toPlainText()
+        #calls changemailbodytemplate from Template module and inputs the text
+        Template.ChangeEmailSubjectTemplate(subjectTextEdit)
+
 
         
-        with open ("EmailSubject.txt", "r") as file:
-           body = file.read()
-           self.win.subjectPlainTextEdit.setPlainText(body)
-           file.close()
-        self.dg.exec()
-
-        self.updatedSubject = self.win.subjectPlainTextEdit.toPlainText()
-        self.UpdateSubjectTemplate(self.updatedSubject)
 
 
     def ChangeEmailTemplate(self):
@@ -79,76 +75,32 @@ class UI(QMainWindow):
         self.window = Ui_EmailBodyWindow()
         self.window.setupUi(self.dlg)
 
-        #The text box for the email template reads the appropriate text file so that any changes made can be written into the txt file for use later on
-        with open ("EmailBody.txt", "r") as file:
-           body = file.read()
-           self.window.EmailTemplateTextEdit.setPlainText(body)
-           file.close()
-        self.dlg.exec()
+        emailBodyText = self.window.EmailTemplateTextEdit.toPlainText()
+        Template.ChangeEmailBodyTemplate(emailBodyText)
 
-        #getting the value of the textedit only works after the save button is pressed and the dialog is closed
-        self.updatedText = self.window.EmailTemplateTextEdit.toPlainText()
-        self.UpdateEmailTemplate(self.updatedText)
+
 
 
     def UpdateEmailTemplate(self, x):
         with open ('EmailBody.txt', 'w') as file:
             file.write(self.updatedText)
 
-    def UpdateSubjectTemplate(self, x):
-        with open ('EmailSubject.txt', 'w') as file:
-            file.write(self.updatedSubject)
+
 
  
     def SearchUserID(self):
         xuMail = self.ui.xuMailLineEdit.text()
-        try:
-            subscriberData = Sheets.SearchID(xuMail)
-            #Segments the subscriber data list into individual pieces of information that can be used to change the UI as well as the email body message
-            email = subscriberData[1]
-            fname = subscriberData[2]
-            lname = subscriberData[3]
-            date = subscriberData[4]
-            time = subscriberData[5]
-            phoneNumber = subscriberData[6]
-            status = subscriberData[7]
-            subscriber = Subscriber.Subscriber(fname, lname, email, date, time, phoneNumber, status)
-            self.ui.lNameLineEdit.clear()
-            UI.updateUser(self, subscriber)
-        except:
-            self.box = QMessageBox()
-            self.box.setIcon(QMessageBox.Icon.Information)
-            self.box.setWindowTitle("Search Error")
-            self.box.setDetailedText("The search term is either not available in the Google sheets or is blank. Please enter a value that is in the database and try again.")
-            self.box.setInformativeText('You have entered an invalid or unavailable search term.')
-            self.box.setText('Change Search Value')
-            self.box.show()
-            print("change value")
+        self.ui.lNameLineEdit.clear()
+        subscriberSearch = Search.SearchUserID(xuMail)
+        self.updateUser(subscriberSearch)
+        
 
     def SearchLastName(self):
         #TODO: Search Function for last name should not be case sensitive
         lastName = self.ui.lNameLineEdit.text()
-        try:
-            subscriberData = Sheets.SearchLastName(lastName)
-            email = subscriberData[1]
-            fname = subscriberData[2]
-            lname = subscriberData[3]
-            date = subscriberData[4]
-            time = subscriberData[5]
-            phoneNumber = subscriberData[6]
-            status = subscriberData[7]
-            subscriber = Subscriber.Subscriber(fname, lname, email, date, time, phoneNumber, status)
-            self.ui.xuMailLineEdit.clear()
-            UI.updateUser(self,subscriber)
-        except:
-            self.box = QMessageBox()
-            self.box.setIcon(QMessageBox.Icon.Information)
-            self.box.setWindowTitle("Search Error")
-            self.box.setDetailedText("The search term is either not available in the Google sheets or is blank. Please enter a value that is in the database and try again.")
-            self.box.setInformativeText('You have entered an invalid or unavailable search term.')
-            self.box.setText('Change Search Value')
-            self.box.show()
-            print("change value")
+        self.ui.xuMailLineEdit.clear()
+        subscriberSearch = Search.SearchLastName(lastName)
+        self.updateUser(subscriberSearch)
         
         
 
@@ -206,6 +158,7 @@ class UI(QMainWindow):
 
         subject = self.ui.subjectLineEdit.text()
         body = self.ui.emailBodyText.toPlainText()
+        print(f"body of the textEdit is {body}")
         receipient = self.ui.xuMail.text()
         sendName = self.ui.fName.text()
         sendLName = self.ui.lName.text()
