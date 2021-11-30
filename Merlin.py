@@ -7,6 +7,7 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 import sys
 from time import sleep
+from threading import *
 
 from UI import Ui_MainWindow
 from Ui_EmailBody_UI import Ui_EmailBodyWindow
@@ -40,6 +41,8 @@ class UI(QMainWindow):
         #Updates the UI of the Subscriber portion of the GUI
         #Starts of with empty string
         UI.UpdateEmailTextBox(self, "", "", "")
+
+        #self.ui.bulkEmailProgressBar.set
         
 
         #Declaring the Buttons
@@ -52,18 +55,31 @@ class UI(QMainWindow):
         self.ui.actionEmail.triggered.connect(self.ChangeEmailTemplate)
         self.ui.actionSubject.triggered.connect(self.ChangeSubjectTemplate)
 
-        self.ui.bulkEmailSender.clicked.connect(self.GetEmails)
+        self.ui.bulkEmailSender.clicked.connect(self.StartThreadOne)
+
+    def StartThreadOne(self):
+        self.ui.statusbar.showMessage('Sending Emails')
+        print('sulod sa threadings')
+        self.threadOne = Thread(target=self.GetEmails())
 
     def GetEmails(self):
+        print('sulod sa get emails')
         listofReceipients = []
         bulkEmails = self.ui.bulkEmailsTextEdit.toPlainText()
         #gets each email from the text edit string and makes them individual elements inside List
         listofReceipients = bulkEmails.split()
         #print(f"text inside text Edit is {bulkEmails}")
         #print(f"list is {listofReceipients}"
+       
         self.sendBulkEmails(listofReceipients)
 
     def sendBulkEmails(self, listofReceipients):
+        #sets the minimum or initial value or the progress bar
+        #sets the maximum value of the progress bar to be equal to the length of the list of receipients
+        self.ui.bulkEmailProgressBar.setMaximum(len(listofReceipients)+1)
+        maxValue = len(listofReceipients)+1
+        progressValue = 1
+      
         #reads the email subject text file and sets as the email subject line
         with open('EmailSubject.txt', 'r') as file:
             subject = file.read()
@@ -83,15 +99,25 @@ class UI(QMainWindow):
             
             #calls replacetemplate to replace NAME TIME AND DATE texts inside template
             body = self.ReplaceTemplate(fname, date, time)
+            progressValue += 1
+            self.ui.bulkEmailProgressBar.setValue(progressValue)
+            print(progressValue)
     
-            print(f"receipient info is: {fname} {lname} - {email}")
+            #print(f"receipient info is: {fname} {lname} - {email}")
+            
             newStatus = SendMail.BulkEmailSender(subject, body, email, fname, lname)
+
             self.UpdateStatus(newStatus)
-            sleep(1)
+            sleep(0.5)
 
         msgBox = QMessageBox()
+        msgBox.setIcon(QMessageBox.Icon.Information)
         msgBox.setText('Emails Sent')
+        self.ui.statusbar.showMessage('Emails sent')
         msgBox.exec()
+        if (progressValue == maxValue):
+            sleep(1)
+            self.ui.bulkEmailProgressBar.setValue(0)
 
         
     def ReplaceTemplate(self, firstName, date, time):
@@ -205,7 +231,8 @@ class UI(QMainWindow):
         receipient = self.ui.xuMail.text()
         sendName = self.ui.fName.text()
         sendLName = self.ui.lName.text()
-        newStatus = SendMail.sendEmail(subject, body, receipient, sendName, sendLName)
+        returnStatus = SendMail.sendEmail(subject, body, receipient, sendName, sendLName)
+        newStatus = returnStatus[2]
         self.UpdateStatus(newStatus)
 
 
@@ -213,7 +240,7 @@ class UI(QMainWindow):
 
     def UpdateStatus(self, status):
         print('updating status')
-        self.ui.status.setText(status)
+        #self.ui.status.setText(status)
         print('after updating status')
 
 
