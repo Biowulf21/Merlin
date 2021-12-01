@@ -63,15 +63,23 @@ class UI(QMainWindow):
         self.threadOne = Thread(target=self.GetEmails())
 
     def GetEmails(self):
-        print('sulod sa get emails')
+        #print('sulod sa get emails')
         listofReceipients = []
         bulkEmails = self.ui.bulkEmailsTextEdit.toPlainText()
-        #gets each email from the text edit string and makes them individual elements inside List
-        listofReceipients = bulkEmails.split()
-        #print(f"text inside text Edit is {bulkEmails}")
-        #print(f"list is {listofReceipients}"
-       
-        self.sendBulkEmails(listofReceipients)
+        print(f"textedit text is {bulkEmails}")
+        if bulkEmails == "":
+            msg = QMessageBox()
+            msg.setText("Please enter emails")
+            msg.setIcon(QMessageBox.Icon.Warning)
+            msg.exec()
+        else:
+
+            #gets each email from the text edit string and makes them individual elements inside List
+            listofReceipients = bulkEmails.split()
+            #print(f"text inside text Edit is {bulkEmails}")
+            #print(f"list is {listofReceipients}"
+
+            self.sendBulkEmails(listofReceipients)
 
 
         #sends emails to a group of emails
@@ -300,7 +308,7 @@ if __name__ == "__main__":
     win = UI()
     win.setWindowTitle('Merlin - Crusader Email Wizard')
     app.setWindowIcon(QIcon('Merlin-Icon.ico'))
-    win.show()
+    win.showMaximized()
     sys.exit(app.exec())
 
 
