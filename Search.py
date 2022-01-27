@@ -13,46 +13,36 @@ def SearchUserID(ID):
     try:
         subscriberData = Sheets.SearchID(ID)
         #Segments the subscriber data list into individual pieces of information that can be used to change the UI as well as the email body message
+
         email = subscriberData[1]
-        fname = subscriberData[2]
+        fname = subscriberData[4]
         lname = subscriberData[3]
-        date = subscriberData[4]
-        time = subscriberData[5]
+        date = subscriberData[16]
+        time = subscriberData[14]
         phoneNumber = subscriberData[6]
-        status = subscriberData[7]
+        status = subscriberData[15]
         subscriber = Subscriber.Subscriber(fname, lname, email, date, time, phoneNumber, status)
         print('abot dinhi')
         return subscriber
     except:
-        box = QMessageBox()
-        box.setIcon(QMessageBox.Icon.Information)
-        box.setWindowTitle("Search Error")
-        box.setDetailedText("The search term is either not available in the Google sheets or is blank. Please enter a value that is in the database and try again.")
-        box.setInformativeText('You have entered an invalid or unavailable search term.')
-        box.setText('Change Search Value')
-        box.show()
         print("change value")
 
 def SearchLastName(surname):
+    print("in 2nd search lname")
     try:
+        print('in try')
         #chops up the data inside string to specific variables
         subscriberData = Sheets.SearchLastName(surname)
+        print(f'subscriber data is {subscriberData}')
         email = subscriberData[1]
-        fname = subscriberData[2]
+        fname = subscriberData[4]
         lname = subscriberData[3]
-        date = subscriberData[4]
-        time = subscriberData[5]
+        date = subscriberData[16]
+        time = subscriberData[14]
         phoneNumber = subscriberData[6]
-        status = subscriberData[7]
+        status = subscriberData[15]
         #instantiates a subscriber object from the subscriber class
         subscriber = Subscriber.Subscriber(fname, lname, email, date, time, phoneNumber, status)
         return subscriber
     except:
-        box = QMessageBox()
-        box.setIcon(QMessageBox.Icon.Information)
-        box.setWindowTitle("Search Error")
-        box.setDetailedText("The search term is either not available in the Google sheets or is blank. Please enter a value that is in the database and try again.")
-        box.setInformativeText('You have entered an invalid or unavailable search term.')
-        box.setText('Change Search Value')
-        box.show()
         print("change value")

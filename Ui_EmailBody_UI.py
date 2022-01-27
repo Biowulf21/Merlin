@@ -42,6 +42,6 @@ class Ui_EmailBodyWindow(object):
 
     def retranslateUi(self, EmailBodyWindow):
         _translate = QtCore.QCoreApplication.translate
-       #EmailBodyWindow.setWindowTitle(_translate("EmailBodyWindow", "Email Template - Merlin"))
+        EmailBodyWindow.setWindowTitle(_translate("EmailBodyWindow", "Email Template - Merlin"))
         self.emailTemplateCancelBtn.setText(_translate("EmailBodyWindow", "Cancel"))
         self.emailTemplateSaveBtn.setText(_translate("EmailBodyWindow", "Save"))
