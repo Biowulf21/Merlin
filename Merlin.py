@@ -130,7 +130,7 @@ class UI(QMainWindow):
                         pass
 
                     # self.UpdateStatus(newStatus)
-                    sleep(0.5)
+                    sleep(1)
 
                 except:
                     print('naa sa except')
