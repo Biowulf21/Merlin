@@ -1,5 +1,8 @@
 Good day, __NAME__!
 
+<!---
+Here is your test image [link](LINK)
+-->
 We are reminding you again to please take note of the following guidelines as you are about to have your yearbook pictorial tomorrow __DATE__
 
 __BEFORE ARRIVING ON SITE:__  
