@@ -1,31 +1,27 @@
 #!/usr/bin/env python3
-
-# GUI Imports
-from os import replace
-from re import sub
-from typing import OrderedDict
-from PyQt5 import QtWidgets, uic
-from PyQt5.QtGui import QIcon
-from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
-import sys
-from time import sleep
 from threading import *
-
-from UI import Ui_MainWindow
-from Ui_EmailBody_UI import Ui_EmailBodyWindow
-
-# module imports
-import Template
+from time import sleep
+from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
+from PyQt5.QtGui import QIcon
+from re import sub
+from os import link, replace
 import Search
 import SendMail
 import Sheets
+import Subscriber
+import Template
+from UI import Ui_MainWindow
+from Ui_EmailBody_UI import Ui_EmailBodyWindow
+from Ui_SubjectEmail_UI import Ui_Dialog
+
+import sys
+# GUI Imports
+
+
+# module imports
 
 
 # email imports
-import smtplib
-from email.message import EmailMessage
-
-from Ui_SubjectEmail_UI import Ui_Dialog
 
 
 class UI(QMainWindow):
@@ -104,15 +100,15 @@ class UI(QMainWindow):
                 try:
                     print('naa sa try')
                     email = receipientInfo[1]
-                    fname = receipientInfo[4]
-                    lname = receipientInfo[3]
+                    name = receipientInfo[4]
+                    link = receipientInfo[3]
                     date = receipientInfo[16]
                     time = receipientInfo[14]
                     phoneNumber = receipientInfo[6]
                     status = receipientInfo[15]
 
                     # calls replacetemplate to replace NAME TIME AND DATE texts inside template
-                    body = self.ReplaceTemplate(fname, date, time)
+                    body = self.ReplaceTemplate(name, date, time, link)
                     progressValue += 1
 
                     print(f"progress value is {progressValue}")
@@ -120,7 +116,7 @@ class UI(QMainWindow):
                     #print(f"receipient info is: {fname} {lname} - {email}")
 
                     newStatus = SendMail.BulkEmailSender(
-                        subject, body, email, fname, lname)
+                        subject, body, email, name)
                     print(f"new status = {newStatus[1]}")
                     if newStatus[1] == "Notified":
                         sentList.append(newStatus[0])
@@ -163,12 +159,12 @@ class UI(QMainWindow):
         self.ui.sentListWidget.addItems(sentList)
         self.ui.failedListWidget.addItems(unsentList)
 
-    def ReplaceTemplate(self, firstName, date, time):
+    def ReplaceTemplate(self, firstName, date, time, link):
         # reads the email body text file and sets as email body
         with open('compose.md', 'r') as file:
             body = file.read()
             # Changes all the instances of NAME, DATE and TIME that is in the template in the Emailbody.txt file
-            for word in (("NAME", firstName), ("DATE", date), ("TIME", time)):
+            for word in (("NAME", firstName), ("DATE", date), ("TIME", time), ("LINK", link)):
                 body = body.replace(*word)
             return body
 

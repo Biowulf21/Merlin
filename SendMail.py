@@ -54,7 +54,7 @@ def sendEmail(subject, body, email, firstName, lastName):
         return "Not Notified"
 
 
-def BulkEmailSender(subject, body, email, firstName, lastName):
+def BulkEmailSender(subject, body, email, name):
     print('in send mail')
     sender = SENDER
     password = PASSWORD
@@ -100,7 +100,7 @@ def BulkEmailSender(subject, body, email, firstName, lastName):
         # append to successfuly sent emails and will return a list with an email that was successfuly sent as well as the notified status
         sentList.append(email)
         sentList.append("Notified")
-        print(f"sent to  {lastName}, {firstName}")
+        print(f"sent to {name}")
         return sentList
     except Exception as e:
         exception_type, exception_object, exception_traceback = sys.exc_info()
