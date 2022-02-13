@@ -132,7 +132,15 @@ class UI(QMainWindow):
                     # self.UpdateStatus(newStatus)
                     sleep(1)
 
-                except:
+                except Exception as e:
+                    exception_type, exception_object, exception_traceback = sys.exc_info()
+                    filename = exception_traceback.tb_frame.f_code.co_filename
+                    line_number = exception_traceback.tb_lineno
+
+                    print("Exception type: ", exception_type)
+                    print("File name: ", filename)
+                    print("Line number: ", line_number)
+                    print(e)
                     print('naa sa except')
                     pass
             else:
@@ -157,7 +165,7 @@ class UI(QMainWindow):
 
     def ReplaceTemplate(self, firstName, date, time):
         # reads the email body text file and sets as email body
-        with open('EmailBody.txt', 'r') as file:
+        with open('compose.md', 'r') as file:
             body = file.read()
             # Changes all the instances of NAME, DATE and TIME that is in the template in the Emailbody.txt file
             for word in (("NAME", firstName), ("DATE", date), ("TIME", time)):
@@ -189,7 +197,7 @@ class UI(QMainWindow):
         Template.ChangeEmailBodyTemplate(emailBodyText)
 
     def UpdateEmailTemplate(self, x):
-        with open('EmailBody.txt', 'w') as file:
+        with open('compose.md', 'w') as file:
             file.write(self.updatedText)
 
     def SearchUserID(self):
@@ -213,7 +221,7 @@ class UI(QMainWindow):
         date = str(claimDate)
         time = str(claimTime)
 
-        with open("EmailBody.txt", 'r') as file:
+        with open("compose.md", 'r') as file:
             body = file.read()
             for word in (("NAME", name), ("DATE", date), ("TIME", time)):
                 body = body.replace(*word)

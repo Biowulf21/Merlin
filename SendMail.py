@@ -1,10 +1,19 @@
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 import PyQt5
 from PyQt5.QtWidgets import QMessageBox
-
+import sys
 import smtplib
+from smtplib import SMTP
 from email.message import EmailMessage
 
+import markdown
+from settings import (HOST, PORT, SENDER, DISPLAY_NAME,
+                      PASSWORD, RECIPIENT, MESSAGE_FILE)
+
 import Sheets
+
+# TODO: Have markdown text formatted into html and send it as email body for formmated texr
 
 
 def sendEmail(subject, body, email, firstName, lastName):
@@ -23,7 +32,7 @@ def sendEmail(subject, body, email, firstName, lastName):
     message['To'] = sendTo
     message.set_content(body)
     try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        with smtplib.SMTP_SSL(HOST, PORT) as smtp:
             #smtp.login(sender, password)
             # print('sending...')
             # smtp.send_message(message)
@@ -46,9 +55,9 @@ def sendEmail(subject, body, email, firstName, lastName):
 
 
 def BulkEmailSender(subject, body, email, firstName, lastName):
-    returnList = []
-    sender = "crusaderyearbook@xu.edu.ph"
-    password = "uisjoyfegjgudwpp"
+    print('in send mail')
+    sender = SENDER
+    password = PASSWORD
     #print(str(all) + " recipients found.\n")
     sent = 0
 
@@ -56,36 +65,59 @@ def BulkEmailSender(subject, body, email, firstName, lastName):
     unsentList = []
     failedTo = []
 
-    sendTo = email
-    message = EmailMessage()
-    message['Subject'] = subject
-    message['From'] = sender
-    message['To'] = sendTo
-    message.set_content(body)
     try:
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(sender, password)
-            smtp.send_message(message)
-            Sheets.WriteStatus(email)
-            #msgBox.setText("Message sent to " + email + " - " + firstName + " " + lastName + " - " + email)
-            # msgBox.exec()
-            sent = sent+1
-            # FIXME: Should create a list of all receipients that have been sent an email and all receipients whose emails failed
-            # FIXME: Status setting should be fixed as right now, there is no way on confirmting that a subscriber is alaready notified
+        server = SMTP(host=HOST, port=PORT)
+        server.connect(host=HOST, port=PORT)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
+        server.login(user=SENDER, password=PASSWORD)
+        print('after login')
+        multipart_msg = MIMEMultipart("alternative")
 
-            # append to successfuly sent emails and will return a list with an email that was successfuly sent as well as the notified status
-            sentList.append(sendTo)
-            sentList.append("Notified")
-            print(f"sent to  {lastName}, {firstName}")
-            return sentList
+        multipart_msg["Subject"] = subject
+        multipart_msg["From"] = DISPLAY_NAME
+        multipart_msg["To"] = email
+        print('after email deets')
+
+        text = body
+        html = markdown.markdown(text)
+        print(f'text is {text}')
+        print(f'html is {html}')
+        part1 = MIMEText(text, "plain")
+        part2 = MIMEText(html, "html")
+        multipart_msg.attach(part1)
+        multipart_msg.attach(part2)
+
+        server.sendmail(SENDER, email, multipart_msg.as_string())
+        print('after sending')
+        Sheets.WriteStatus(email)
+        #msgBox.setText("Message sent to " + email + " - " + firstName + " " + lastName + " - " + email)
+        # msgBox.exec()
+        sent = sent+1
+        # FIXME: Should create a list of all receipients that have been sent an email and all receipients whose emails failed
+        # FIXME: Status setting should be fixed as right now, there is no way on confirmting that a subscriber is alaready notified
+        # append to successfuly sent emails and will return a list with an email that was successfuly sent as well as the notified status
+        sentList.append(email)
+        sentList.append("Notified")
+        print(f"sent to  {lastName}, {firstName}")
+        return sentList
     except Exception as e:
-        failedTo.append(sendTo)
+        exception_type, exception_object, exception_traceback = sys.exc_info()
+        filename = exception_traceback.tb_frame.f_code.co_filename
+        line_number = exception_traceback.tb_lineno
+
+        print("Exception type: ", exception_type)
+        print("File name: ", filename)
+        print("Line number: ", line_number)
+        print(e)
+        failedTo.append(email)
         # append to unsuccesfully sent emails and will return a list with an  email that was unsuccessfully sent as well as the "Email Failed status"
-        unsentList.append(sendTo)
+        unsentList.append(email)
         unsentList.append('Email Failed')
 
         # summary report
         if len(failedTo) != 0:
             print("Failed to send to: ")
             print(*failedTo, sep=", ")
-        # return "Not Notified"
+        return "Not Notified"
