@@ -5,23 +5,21 @@ from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 from PyQt5.QtGui import QIcon
 from re import sub
 from os import link, replace
-import Search
-import SendMail
-import Sheets
-import Subscriber
-import Template
-from UI import Ui_MainWindow
-from Ui_EmailBody_UI import Ui_EmailBodyWindow
-from Ui_SubjectEmail_UI import Ui_Dialog
+# from modules import Search
+# from modules import SendMail
+# from modules import Sheets
+# from modules import Subscriber
+# from modules import Template
+import modules.Search as search
+import modules.SendMail as sendmail
+import modules.Sheets as sheets
+import modules.Subscriber as subs
+import modules.Template as temp
+from ui_files.UI import Ui_MainWindow
+from ui_files.Ui_EmailBody_UI import Ui_EmailBodyWindow
+from ui_files.Ui_SubjectEmail_UI import Ui_Dialog
 
 import sys
-# GUI Imports
-
-
-# module imports
-
-
-# email imports
 
 
 class UI(QMainWindow):
@@ -92,7 +90,7 @@ class UI(QMainWindow):
 
         for receipient in listofReceipients:
             # gets the information of every receipient
-            receipientInfo = Sheets.SearchID(receipient)
+            receipientInfo = sheets.SearchID(receipient)
 
             # chops up information into individual variables
 
@@ -115,7 +113,7 @@ class UI(QMainWindow):
 
                     #print(f"receipient info is: {fname} {lname} - {email}")
 
-                    newStatus = SendMail.BulkEmailSender(
+                    newStatus = sendmail.BulkEmailSender(
                         subject, body, email, name)
                     print(f"new status = {newStatus[1]}")
                     if newStatus[1] == "Notified":
@@ -172,14 +170,13 @@ class UI(QMainWindow):
 # FIXME: Program reads Template but when editing, not pressing the save button (just exiting by pressing escape) still updates the template
 # Same case for both updating the email body template and for the subject template
 
-
     def ChangeSubjectTemplate(self):
         self.dg = QDialog()
         self.win = Ui_Dialog()
         self.win.setupUi(self.dg)
         subjectTextEdit = self.win.subjectPlainTextEdit.toPlainText()
         # calls changemailbodytemplate from Template module and inputs the text
-        Template.ChangeEmailSubjectTemplate(subjectTextEdit)
+        temp.ChangeEmailSubjectTemplate(subjectTextEdit)
 
     def ChangeEmailTemplate(self):
 
@@ -190,7 +187,7 @@ class UI(QMainWindow):
         self.window.setupUi(self.dlg)
 
         emailBodyText = self.window.EmailTemplateTextEdit.toPlainText()
-        Template.ChangeEmailBodyTemplate(emailBodyText)
+        temp.ChangeEmailBodyTemplate(emailBodyText)
 
     def UpdateEmailTemplate(self, x):
         with open('compose.md', 'w') as file:
@@ -199,14 +196,14 @@ class UI(QMainWindow):
     def SearchUserID(self):
         xuMail = self.ui.xuMailLineEdit.text()
         self.ui.lNameLineEdit.clear()
-        subscriberSearch = Search.SearchUserID(xuMail)
+        subscriberSearch = search.SearchUserID(xuMail)
         self.updateUser(subscriberSearch)
 
     def SearchLastName(self):
         # TODO: Search Function for last name should not be case sensitive
         lastName = self.ui.lNameLineEdit.text()
         self.ui.xuMailLineEdit.clear()
-        subscriberSearch = Search.SearchLastName(lastName)
+        subscriberSearch = search.SearchLastName(lastName)
         self.updateUser(subscriberSearch)
 
     # updates the email body textEdit
@@ -258,7 +255,7 @@ class UI(QMainWindow):
         receipient = self.ui.xuMail.text()
         sendName = self.ui.fName.text()
         sendLName = self.ui.lName.text()
-        returnStatus = SendMail.sendEmail(
+        returnStatus = sendmail.sendEmail(
             subject, body, receipient, sendName, sendLName)
         newStatus = returnStatus[1]
         # successSent.append(returnStatus[0])

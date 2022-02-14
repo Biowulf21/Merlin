@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 SCOPES = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
           "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
-SERVICE_ACCOUNT_FILE = 'merlin.json'
+SERVICE_ACCOUNT_FILE = 'modules/merlin.json'
 
 CREDS = ServiceAccountCredentials.from_json_keyfile_name(
     SERVICE_ACCOUNT_FILE, SCOPES)
