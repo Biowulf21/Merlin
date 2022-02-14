@@ -23,6 +23,7 @@ Merlin was designed to help the Crusader Yearbook to send formatted bulk emails 
 - Collaborate with teammates using the Google Sheets dependency file
 - Real-time notification status change
 ## Dependencies
+1. [Python](https://www.python.org/downloads/)
 1. [SMTPEmail](https://docs.python.org/3/library/smtplib.html) - `pip3 install smtplib`
 1. [Google Drive and Google Sheets API](https://www.youtube.com/watch?v=cnPlKLEGR7E&t=4s)
 1. [Markdown](https://pypi.org/project/Markdown/) - `pip3 install markdown`
