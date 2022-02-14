@@ -11,7 +11,7 @@ Merlin was designed to help the Crusader Yearbook to send formatted bulk emails 
 1. [Usage](#Usage)
    1. [Bulk Emails](#Bulk)
    1. [Individual Emails](#Individual)
-1.  [Customizing the Email Body](#Customizing the Email Body)
+1.  [Customizing the Email Body](#Customization)
 1. [FAQs](#FAQS)
 
 ## Features
@@ -53,7 +53,7 @@ Merlin was designed to help the Crusader Yearbook to send formatted bulk emails 
 1. Press the `Send Email` button to send the email to the subscriber.
 1. . Errors will be shown and sending will stop if the Merlin encounters errors. Example, if the subscriber isn't found on the Google Sheet file, Merlin will throw an error.
 ---
-### Customizing the Email Body
+### Customization
 Customizing the email body by using information on the Merlin Google Sheet file is very easy. As of the moment, Merlin customizes the __NAME__, __DATE__, and __LINK__ columns from the Google sheet.
 1. Every instance of the words above (__NAME__, __DATE__, __LINK__) will be replaced by the respective information from the Google Sheet file.
 1. You can customize these words by changing these codeblocks:
