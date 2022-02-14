@@ -9,8 +9,8 @@ Merlin was designed to help the Crusader Yearbook to send formatted bulk emails 
 1. [Dependencies](#Dependencies)
 1. [Installation](#Installation)
 1. [Usage](#Usage)
-   1. [Bulk Emails](#Bulk Emails)
-   1. [Individual Emails](#Individual Emails)
+   1. [Bulk Emails](#Bulk)
+   1. [Individual Emails](#Individual)
 1.  [Customizing the Email Body](#Customizing the Email Body)
 1. [FAQs](#FAQS)
 
@@ -35,7 +35,7 @@ Merlin was designed to help the Crusader Yearbook to send formatted bulk emails 
 ```export PYTHONPATH=/path/of/directory:${PYTHONPATH}```.
 1. Make sure all dependencies are installed on your system.  
 ## Usage
-### Bulk Emails
+### Bulk  
 1. Change the email body by going into __Settings > Change Template > Email Body/Email Subject__ and change the contents there to change the content of either the email body or subject. Alternatively, you can go ahead and open the `compose.md` and `emailSubject.txt` files to change the body and subject respectively.   __Note:__ The email body should be written in markdown. For more information on how to use markdown, check out this [link](https://www.markdownguide.org/cheat-sheet/).
 1. Input all necessary information in Google Sheet dependency file.
 1. Copy the content of the __email column__ in the Google Sheet.
@@ -44,7 +44,7 @@ Merlin was designed to help the Crusader Yearbook to send formatted bulk emails 
 1. Check the progress by checking the progress bar indicator.
 1. Merlin will prompt you if the sending is complete.
 ---
-### Individual Emails  
+### Individual  
 1. Change the email body by going into __Settings > Change Template > Email Body/Email Subject__ and change the contents there to change the content of either the email body or subject. Alternatively, you can go ahead and open the `compose.md` and `emailSubject.txt` files to change the body and subject respectively.   __Note:__ The email body should be written in markdown. For more information on how to use markdown, check out this [link](https://www.markdownguide.org/cheat-sheet/).
 1. Input all necessary information in Google Sheet dependency file.
 1. Search for the Subscriber by searching for the subscriber's last name or XU ID by inputting the information into the appropriate search box and pressing `Submit`.
