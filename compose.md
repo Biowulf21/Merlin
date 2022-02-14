@@ -1,8 +1,5 @@
 Good day, __NAME__!
 
-<!---
-Here is your test image [link](LINK)
--->
 We are reminding you again to please take note of the following guidelines as you are about to have your yearbook pictorial tomorrow __DATE__
 
 __BEFORE ARRIVING ON SITE:__  
@@ -21,7 +18,8 @@ __WHEN ARRIVING ON SITE:__
 - A CYB staff member will inspect your reservation slot via the aforementioned screenshot and their respective checklist copy.  
 - Please standby in the waiting area (Grad Pro annex building), sign an office copy of the subscription contract. Write your height and t-shirt anywhere in the contract. and wait to be ushered by a staff member.  
 - As you are ushered by a CYB staff, register on the provided laptop from the photographers in the studio.  
-- Wait for your name to be called. You will then be escorted to the studio by our staff. Inspect your photos before proceeding to the next station.  
+- Wait for your name to be called. You will then be escorted to the studio by our staff. Inspect your photos before proceeding to the next station. 
+- Please keep within the 15-minute alloted time for your pictorial schedule. Try to avoid doing anything that will take up too much time. If delay is unavoidable, please do all the necessary preparations beforehand. 
  
 There will be 3 stations (Please wear your outfit according to pictorial shoot and follow the order below): 
 

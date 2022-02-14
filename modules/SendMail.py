@@ -8,10 +8,10 @@ from smtplib import SMTP
 from email.message import EmailMessage
 
 import markdown
-from settings import (HOST, PORT, SENDER, DISPLAY_NAME,
-                      PASSWORD, RECIPIENT, MESSAGE_FILE)
+from modules.settings import (HOST, PORT, SENDER, DISPLAY_NAME,
+                              PASSWORD, RECIPIENT, MESSAGE_FILE)
 
-import Sheets
+import modules.Sheets as sheets
 
 # TODO: Have markdown text formatted into html and send it as email body for formmated texr
 
@@ -36,7 +36,7 @@ def sendEmail(subject, body, email, firstName, lastName):
             #smtp.login(sender, password)
             # print('sending...')
             # smtp.send_message(message)
-            Sheets.WriteStatus(email)
+            sheets.WriteStatus(email)
             #print('internet is slow')
             msgBox.setText("Message sent to " + email + " - " +
                            firstName + " " + lastName + " - " + email)
@@ -82,8 +82,8 @@ def BulkEmailSender(subject, body, email, name):
 
         text = body
         html = markdown.markdown(text)
-        print(f'text is {text}')
-        print(f'html is {html}')
+        # print(f'text is {text}')
+        # print(f'html is {html}')
         part1 = MIMEText(text, "plain")
         part2 = MIMEText(html, "html")
         multipart_msg.attach(part1)
@@ -91,7 +91,7 @@ def BulkEmailSender(subject, body, email, name):
 
         server.sendmail(SENDER, email, multipart_msg.as_string())
         print('after sending')
-        Sheets.WriteStatus(email)
+        sheets.WriteStatus(email)
         #msgBox.setText("Message sent to " + email + " - " + firstName + " " + lastName + " - " + email)
         # msgBox.exec()
         sent = sent+1
