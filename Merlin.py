@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 from threading import *
-from time import sleep
-from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
-from PyQt5.QtGui import QIcon
-from re import sub
-from os import link, replace
 # from modules import Search
 # from modules import SendMail
 # from modules import Sheets
 # from modules import Subscriber
 # from modules import Template
+
+# Modules
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 import modules.Search as search
 import modules.SendMail as sendmail
 import modules.Sheets as sheets
@@ -19,7 +19,17 @@ from ui_files.UI import Ui_MainWindow
 from ui_files.Ui_EmailBody_UI import Ui_EmailBodyWindow
 from ui_files.Ui_SubjectEmail_UI import Ui_Dialog
 
+# Libraries
+from os import link, replace
 import sys
+from time import sleep
+from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
+from PyQt5.QtGui import QIcon
+from re import sub
+from smtplib import SMTP
+
+from modules.settings import (HOST, PORT, SENDER, DISPLAY_NAME,
+                              PASSWORD, RECIPIENT, MESSAGE_FILE)
 
 
 class UI(QMainWindow):
@@ -28,6 +38,8 @@ class UI(QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+
+        
 
         # Updates the UI of the Subscriber portion of the GUI
         # Starts of with empty string
@@ -68,6 +80,11 @@ class UI(QMainWindow):
         # sends emails to a group of emails
 
     def sendBulkEmails(self, listofReceipients):
+        server = SMTP(host=HOST, port=PORT)
+        server.connect(host=HOST, port=PORT)
+        server.ehlo()
+        server.starttls()
+        server.ehlo()
         self.ui.sentListWidget.clear()
         self.ui.failedListWidget.clear()
         # list of emails that were sent successfuly
@@ -113,8 +130,7 @@ class UI(QMainWindow):
 
                     #print(f"receipient info is: {fname} {lname} - {email}")
 
-                    newStatus = sendmail.BulkEmailSender(
-                        subject, body, email, name)
+                    newStatus = sendmail.BulkEmailSender(subject=subject, body=body, email=email, name=name, server=server)
                     print(f"new status = {newStatus[1]}")
                     if newStatus[1] == "Notified":
                         sentList.append(newStatus[0])
@@ -124,7 +140,7 @@ class UI(QMainWindow):
                         pass
 
                     # self.UpdateStatus(newStatus)
-                    sleep(1)
+                    # sleep(1)
 
                 except Exception as e:
                     exception_type, exception_object, exception_traceback = sys.exc_info()

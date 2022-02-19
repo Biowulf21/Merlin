@@ -54,7 +54,7 @@ def sendEmail(subject, body, email, firstName, lastName):
         return "Not Notified"
 
 
-def BulkEmailSender(subject, body, email, name):
+def BulkEmailSender(subject, body, email, name, server):
     print('in send mail')
     sender = SENDER
     password = PASSWORD
@@ -66,11 +66,7 @@ def BulkEmailSender(subject, body, email, name):
     failedTo = []
 
     try:
-        server = SMTP(host=HOST, port=PORT)
-        server.connect(host=HOST, port=PORT)
-        server.ehlo()
-        server.starttls()
-        server.ehlo()
+
         server.login(user=SENDER, password=PASSWORD)
         print('after login')
         multipart_msg = MIMEMultipart("alternative")
