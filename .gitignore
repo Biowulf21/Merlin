@@ -6,3 +6,4 @@ dist/
 *.json
 /test/
 /.vscode/
+Merlin.sh
