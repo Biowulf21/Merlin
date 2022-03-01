@@ -46,7 +46,8 @@ def SearchID(query):
         rownum = col.index(query) + 1
         row = sheet.row_values(rownum)
         return row
-    except:
+    except Exception as e:
+        print(e)
         box = QMessageBox()
         box.setIcon(QMessageBox.Icon.Information)
         box.setWindowTitle("Search Error")

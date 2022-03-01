@@ -1,5 +1,6 @@
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from time import sleep
 import PyQt5
 from PyQt5.QtWidgets import QMessageBox
 import sys
@@ -66,7 +67,7 @@ def BulkEmailSender(subject, body, email, name, server):
     failedTo = []
 
     try:
-
+        sleep(1)
         server.login(user=SENDER, password=PASSWORD)
         print('after login')
         multipart_msg = MIMEMultipart("alternative")
