@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/storage/James Codes/Python/CYB/Test/Merlin.ui'
+# Form implementation generated from reading ui file 'Merlin.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -23,66 +23,78 @@ class Ui_MainWindow(object):
         self.gridLayout_3 = QtWidgets.QGridLayout()
         self.gridLayout_3.setObjectName("gridLayout_3")
         self.frame_2 = QtWidgets.QFrame(self.centralwidget)
+        self.frame_2.setMinimumSize(QtCore.QSize(300, 0))
         self.frame_2.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_2.setObjectName("frame_2")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.frame_2)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.QRGraphicsView = QtWidgets.QGraphicsView(self.frame_2)
-        self.QRGraphicsView.setObjectName("QRGraphicsView")
-        self.verticalLayout_2.addWidget(self.QRGraphicsView)
         self.formLayout_2 = QtWidgets.QFormLayout()
         self.formLayout_2.setObjectName("formLayout_2")
         self.fNameLabel = QtWidgets.QLabel(self.frame_2)
         self.fNameLabel.setObjectName("fNameLabel")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.LabelRole, self.fNameLabel)
+        self.formLayout_2.setWidget(
+            0, QtWidgets.QFormLayout.LabelRole, self.fNameLabel)
         self.fName = QtWidgets.QLabel(self.frame_2)
         self.fName.setAutoFillBackground(True)
         self.fName.setText("")
         self.fName.setObjectName("fName")
-        self.formLayout_2.setWidget(0, QtWidgets.QFormLayout.FieldRole, self.fName)
+        self.formLayout_2.setWidget(
+            0, QtWidgets.QFormLayout.FieldRole, self.fName)
         self.lNameLabel = QtWidgets.QLabel(self.frame_2)
         self.lNameLabel.setObjectName("lNameLabel")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.LabelRole, self.lNameLabel)
+        self.formLayout_2.setWidget(
+            1, QtWidgets.QFormLayout.LabelRole, self.lNameLabel)
         self.lName = QtWidgets.QLabel(self.frame_2)
         self.lName.setText("")
         self.lName.setObjectName("lName")
-        self.formLayout_2.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.lName)
+        self.formLayout_2.setWidget(
+            1, QtWidgets.QFormLayout.FieldRole, self.lName)
         self.pNumLabel = QtWidgets.QLabel(self.frame_2)
         self.pNumLabel.setObjectName("pNumLabel")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.LabelRole, self.pNumLabel)
+        self.formLayout_2.setWidget(
+            2, QtWidgets.QFormLayout.LabelRole, self.pNumLabel)
         self.pNumber = QtWidgets.QLabel(self.frame_2)
         self.pNumber.setText("")
         self.pNumber.setObjectName("pNumber")
-        self.formLayout_2.setWidget(2, QtWidgets.QFormLayout.FieldRole, self.pNumber)
+        self.formLayout_2.setWidget(
+            2, QtWidgets.QFormLayout.FieldRole, self.pNumber)
         self.mailLabel = QtWidgets.QLabel(self.frame_2)
         self.mailLabel.setObjectName("mailLabel")
-        self.formLayout_2.setWidget(3, QtWidgets.QFormLayout.LabelRole, self.mailLabel)
+        self.formLayout_2.setWidget(
+            3, QtWidgets.QFormLayout.LabelRole, self.mailLabel)
         self.xuMail = QtWidgets.QLabel(self.frame_2)
         self.xuMail.setText("")
         self.xuMail.setObjectName("xuMail")
-        self.formLayout_2.setWidget(3, QtWidgets.QFormLayout.FieldRole, self.xuMail)
+        self.formLayout_2.setWidget(
+            3, QtWidgets.QFormLayout.FieldRole, self.xuMail)
         self.claimDateLabel = QtWidgets.QLabel(self.frame_2)
         self.claimDateLabel.setObjectName("claimDateLabel")
-        self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.LabelRole, self.claimDateLabel)
+        self.formLayout_2.setWidget(
+            4, QtWidgets.QFormLayout.LabelRole, self.claimDateLabel)
         self.claimDate = QtWidgets.QLabel(self.frame_2)
         self.claimDate.setText("")
         self.claimDate.setObjectName("claimDate")
-        self.formLayout_2.setWidget(4, QtWidgets.QFormLayout.FieldRole, self.claimDate)
+        self.formLayout_2.setWidget(
+            4, QtWidgets.QFormLayout.FieldRole, self.claimDate)
         self.claimTimeLabel = QtWidgets.QLabel(self.frame_2)
         self.claimTimeLabel.setObjectName("claimTimeLabel")
-        self.formLayout_2.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.claimTimeLabel)
+        self.formLayout_2.setWidget(
+            5, QtWidgets.QFormLayout.LabelRole, self.claimTimeLabel)
         self.claimTime = QtWidgets.QLabel(self.frame_2)
         self.claimTime.setText("")
         self.claimTime.setObjectName("claimTime")
-        self.formLayout_2.setWidget(5, QtWidgets.QFormLayout.FieldRole, self.claimTime)
+        self.formLayout_2.setWidget(
+            5, QtWidgets.QFormLayout.FieldRole, self.claimTime)
         self.statusLabel = QtWidgets.QLabel(self.frame_2)
         self.statusLabel.setObjectName("statusLabel")
-        self.formLayout_2.setWidget(6, QtWidgets.QFormLayout.LabelRole, self.statusLabel)
+        self.formLayout_2.setWidget(
+            6, QtWidgets.QFormLayout.LabelRole, self.statusLabel)
         self.status = QtWidgets.QLabel(self.frame_2)
         self.status.setText("")
         self.status.setObjectName("status")
-        self.formLayout_2.setWidget(6, QtWidgets.QFormLayout.FieldRole, self.status)
+        self.formLayout_2.setWidget(
+            6, QtWidgets.QFormLayout.FieldRole, self.status)
         self.verticalLayout_2.addLayout(self.formLayout_2)
         self.selectSubButton = QtWidgets.QPushButton(self.frame_2)
         self.selectSubButton.setObjectName("selectSubButton")
@@ -96,53 +108,67 @@ class Ui_MainWindow(object):
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         self.xuMailLineEdit = QtWidgets.QLineEdit(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.xuMailLineEdit.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.xuMailLineEdit.sizePolicy().hasHeightForWidth())
         self.xuMailLineEdit.setSizePolicy(sizePolicy)
         self.xuMailLineEdit.setMinimumSize(QtCore.QSize(0, 0))
         self.xuMailLineEdit.setObjectName("xuMailLineEdit")
         self.gridLayout.addWidget(self.xuMailLineEdit, 0, 0, 1, 1)
         self.xuMailButton = QtWidgets.QPushButton(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.xuMailButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.xuMailButton.sizePolicy().hasHeightForWidth())
         self.xuMailButton.setSizePolicy(sizePolicy)
         self.xuMailButton.setObjectName("xuMailButton")
         self.gridLayout.addWidget(self.xuMailButton, 0, 1, 1, 1)
         self.lNameLineEdit = QtWidgets.QLineEdit(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lNameLineEdit.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.lNameLineEdit.sizePolicy().hasHeightForWidth())
         self.lNameLineEdit.setSizePolicy(sizePolicy)
         self.lNameLineEdit.setMinimumSize(QtCore.QSize(0, 0))
         self.lNameLineEdit.setObjectName("lNameLineEdit")
         self.gridLayout.addWidget(self.lNameLineEdit, 1, 0, 1, 1)
         self.lNameButton = QtWidgets.QPushButton(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lNameButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.lNameButton.sizePolicy().hasHeightForWidth())
         self.lNameButton.setSizePolicy(sizePolicy)
         self.lNameButton.setObjectName("lNameButton")
         self.gridLayout.addWidget(self.lNameButton, 1, 1, 1, 1)
         self.lineEdit_2 = QtWidgets.QLineEdit(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        self.lineEdit_2.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEdit_2.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.lineEdit_2.sizePolicy().hasHeightForWidth())
         self.lineEdit_2.setSizePolicy(sizePolicy)
         self.lineEdit_2.setMinimumSize(QtCore.QSize(0, 0))
         self.lineEdit_2.setObjectName("lineEdit_2")
         self.gridLayout.addWidget(self.lineEdit_2, 2, 0, 1, 1)
         self.pushButton = QtWidgets.QPushButton(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        self.pushButton.setEnabled(False)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pushButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.pushButton.sizePolicy().hasHeightForWidth())
         self.pushButton.setSizePolicy(sizePolicy)
         self.pushButton.setObjectName("pushButton")
         self.gridLayout.addWidget(self.pushButton, 2, 1, 1, 1)
@@ -174,28 +200,34 @@ class Ui_MainWindow(object):
         self.bodyLabel.setObjectName("bodyLabel")
         self.verticalLayout.addWidget(self.bodyLabel)
         self.emailBodyText = QtWidgets.QTextEdit(self.frame_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.emailBodyText.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.emailBodyText.sizePolicy().hasHeightForWidth())
         self.emailBodyText.setSizePolicy(sizePolicy)
         self.emailBodyText.setMinimumSize(QtCore.QSize(400, 0))
         self.emailBodyText.setObjectName("emailBodyText")
         self.verticalLayout.addWidget(self.emailBodyText)
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setObjectName("gridLayout_2")
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem, 0, 0, 1, 1)
         self.emailSendButton = QtWidgets.QPushButton(self.frame_3)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.emailSendButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.emailSendButton.sizePolicy().hasHeightForWidth())
         self.emailSendButton.setSizePolicy(sizePolicy)
         self.emailSendButton.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.emailSendButton.setObjectName("emailSendButton")
         self.gridLayout_2.addWidget(self.emailSendButton, 0, 1, 1, 1)
-        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem1 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem1, 0, 2, 1, 1)
         self.verticalLayout.addLayout(self.gridLayout_2)
         self.horizontalLayout.addLayout(self.verticalLayout)
@@ -220,17 +252,21 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.bulkEmailsTextEdit)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem2 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem2)
         self.bulkEmailSender = QtWidgets.QPushButton(self.frame_5)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.bulkEmailSender.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.bulkEmailSender.sizePolicy().hasHeightForWidth())
         self.bulkEmailSender.setSizePolicy(sizePolicy)
         self.bulkEmailSender.setObjectName("bulkEmailSender")
         self.horizontalLayout_4.addWidget(self.bulkEmailSender)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        spacerItem3 = QtWidgets.QSpacerItem(
+            40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_4.addItem(spacerItem3)
         self.verticalLayout_4.addLayout(self.horizontalLayout_4)
         self.bulkEmailProgressBar = QtWidgets.QProgressBar(self.frame_5)
@@ -256,11 +292,23 @@ class Ui_MainWindow(object):
         self.failedListWidget = QtWidgets.QListWidget(self.frame_6)
         self.failedListWidget.setObjectName("failedListWidget")
         self.verticalLayout_5.addWidget(self.failedListWidget)
+        self.pushButton_2 = QtWidgets.QPushButton(self.frame_6)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.verticalLayout_5.addWidget(self.pushButton_2)
         self.horizontalLayout_3.addWidget(self.frame_6)
+        self.verticalLayout_6 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.label_2 = QtWidgets.QLabel(self.frame_4)
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout_6.addWidget(self.label_2)
+        self.listWidget = QtWidgets.QListWidget(self.frame_4)
+        self.listWidget.setObjectName("listWidget")
+        self.verticalLayout_6.addWidget(self.listWidget)
+        self.horizontalLayout_3.addLayout(self.verticalLayout_6)
         self.horizontalLayout_2.addWidget(self.frame_4)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1420, 20))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1420, 22))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -293,7 +341,8 @@ class Ui_MainWindow(object):
         self.actionExcel_File = QtWidgets.QAction(MainWindow)
         self.actionExcel_File.setObjectName("actionExcel_File")
         self.actionCurrent_Google_Form = QtWidgets.QAction(MainWindow)
-        self.actionCurrent_Google_Form.setObjectName("actionCurrent_Google_Form")
+        self.actionCurrent_Google_Form.setObjectName(
+            "actionCurrent_Google_Form")
         self.actionQR_Text = QtWidgets.QAction(MainWindow)
         self.actionQR_Text.setObjectName("actionQR_Text")
         self.menuUse_different_File.addAction(self.actionGoogle_Sheets)
@@ -325,47 +374,73 @@ class Ui_MainWindow(object):
         self.claimDateLabel.setText(_translate("MainWindow", "Claim Date: "))
         self.claimTimeLabel.setText(_translate("MainWindow", "Claim Time: "))
         self.statusLabel.setText(_translate("MainWindow", "Status:"))
-        self.selectSubButton.setText(_translate("MainWindow", "Select Subscriber"))
-        self.xuMailLineEdit.setPlaceholderText(_translate("MainWindow", "Enter XU Mail"))
+        self.selectSubButton.setText(
+            _translate("MainWindow", "Select Subscriber"))
+        self.xuMailLineEdit.setPlaceholderText(
+            _translate("MainWindow", "Enter XU Mail"))
         self.xuMailButton.setText(_translate("MainWindow", "Search"))
-        self.lNameLineEdit.setPlaceholderText(_translate("MainWindow", "Enter Last Name"))
+        self.lNameLineEdit.setPlaceholderText(
+            _translate("MainWindow", "Enter Last Name"))
         self.lNameButton.setText(_translate("MainWindow", "Search"))
-        self.lineEdit_2.setPlaceholderText(_translate("MainWindow", "Enter Different Email Address"))
+        self.lineEdit_2.setPlaceholderText(_translate(
+            "MainWindow", "Enter Different Email Address"))
         self.pushButton.setText(_translate("MainWindow", "Submit"))
         self.receipientLabel.setText(_translate("MainWindow", "Receipient"))
-        self.receipentLineEdit.setPlaceholderText(_translate("MainWindow", "Receipient"))
+        self.receipentLineEdit.setPlaceholderText(
+            _translate("MainWindow", "Receipient"))
         self.subjectLabel.setText(_translate("MainWindow", "Email Subject"))
-        self.subjectLineEdit.setPlaceholderText(_translate("MainWindow", "Enter Email Subject"))
+        self.subjectLineEdit.setPlaceholderText(
+            _translate("MainWindow", "Enter Email Subject"))
         self.bodyLabel.setText(_translate("MainWindow", "Email Body"))
         self.emailBodyText.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Sans Serif\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Greetings &lt;Name&gt;,</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Your Photo Package is ready to claim on &lt;Date&gt; at &lt;Time&gt;.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Make sure to bring...</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">In Service, </p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">The Crusader Yearbook 2022</p></body></html>"))
+                                              "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
+                                              "p, li { white-space: pre-wrap; }\n"
+                                              "</style></head><body style=\" font-family:\'Ubuntu\'; font-size:10pt; font-weight:400; font-style:normal;\">\n"
+                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">Greetings &lt;Name&gt;,</span></p>\n"
+                                              "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-size:9pt;\"><br /></p>\n"
+                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">Your Photo Package is ready to claim on &lt;Date&gt; at &lt;Time&gt;.</span></p>\n"
+                                              "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-size:9pt;\"><br /></p>\n"
+                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">Make sure to bring...</span></p>\n"
+                                              "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Sans Serif\'; font-size:9pt;\"><br /></p>\n"
+                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">In Service, </span></p>\n"
+                                              "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-family:\'Sans Serif\'; font-size:9pt;\">The Crusader Yearbook 2022</span></p></body></html>"))
         self.emailSendButton.setText(_translate("MainWindow", "Send"))
         self.label.setText(_translate("MainWindow", "Bulk Email Sender"))
-        self.bulkEmailSender.setText(_translate("MainWindow", "Send Bulk Emails"))
-        self.sentTableLabel.setText(_translate("MainWindow", "Sent"))
-        self.failedTableLabel.setText(_translate("MainWindow", "Failed"))
+        self.bulkEmailSender.setText(
+            _translate("MainWindow", "Send Bulk Emails"))
+        self.sentTableLabel.setText(_translate("MainWindow", "Sent (Emails)"))
+        self.failedTableLabel.setText(
+            _translate("MainWindow", "Failed ( Emails)"))
+        self.pushButton_2.setText(_translate("MainWindow", "Copy Failed"))
+        self.label_2.setText(_translate(
+            "MainWindow", "Confirm With (Phone Numbers)"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
-        self.menuUse_different_File.setTitle(_translate("MainWindow", "Use different File"))
+        self.menuUse_different_File.setTitle(
+            _translate("MainWindow", "Use different File"))
         self.menuEdit.setTitle(_translate("MainWindow", "Edit"))
         self.menuForm.setTitle(_translate("MainWindow", "Form"))
         self.menuView.setTitle(_translate("MainWindow", "View"))
         self.menuSettings.setTitle(_translate("MainWindow", "Settings"))
-        self.menuChange_Template.setTitle(_translate("MainWindow", "Change Template"))
+        self.menuChange_Template.setTitle(
+            _translate("MainWindow", "Change Template"))
         self.menuHelp.setTitle(_translate("MainWindow", "Help"))
         self.actionEmail.setText(_translate("MainWindow", "Email"))
         self.actionSubject.setText(_translate("MainWindow", "Subject"))
-        self.actionApplication_Key.setText(_translate("MainWindow", "Application Key"))
-        self.actionGoogle_Sheets.setText(_translate("MainWindow", "Google Sheets"))
+        self.actionApplication_Key.setText(
+            _translate("MainWindow", "Application Key"))
+        self.actionGoogle_Sheets.setText(
+            _translate("MainWindow", "Google Sheets"))
         self.actionExcel_File.setText(_translate("MainWindow", "Excel File"))
-        self.actionCurrent_Google_Form.setText(_translate("MainWindow", "Inspect Google Form"))
+        self.actionCurrent_Google_Form.setText(
+            _translate("MainWindow", "Inspect Google Form"))
         self.actionQR_Text.setText(_translate("MainWindow", "QR Text"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

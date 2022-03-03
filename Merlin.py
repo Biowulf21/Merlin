@@ -39,8 +39,6 @@ class UI(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        
-
         # Updates the UI of the Subscriber portion of the GUI
         # Starts of with empty string
         UI.UpdateEmailTextBox(self, "", "", "")
@@ -130,7 +128,8 @@ class UI(QMainWindow):
 
                     #print(f"receipient info is: {fname} {lname} - {email}")
 
-                    newStatus = sendmail.BulkEmailSender(subject=subject, body=body, email=email, name=name, server=server)
+                    newStatus = sendmail.BulkEmailSender(
+                        subject=subject, body=body, email=email, name=name, server=server)
                     print(f"new status = {newStatus[1]}")
                     if newStatus[1] == "Notified":
                         sentList.append(newStatus[0])

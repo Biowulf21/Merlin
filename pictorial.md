@@ -1,3 +1,8 @@
+<!---
+Pictorial Reminders
+-->
+
+
 Good day, __NAME__!
 
 We are reminding you again to please take note of the following guidelines as you are about to have your yearbook pictorial tomorrow __DATE__

@@ -1,7 +1,15 @@
-Dear __NAME__,
+<!---
+Distribution Confirmation Email with Balance
+-->
 
 
-Congratulations! You’re nearing the last step of your photo package /& Yearbook claiming process. This email serves as a confirmation of your claiming schedule. We would like to remind you that your claiming schedule is set for __DATE__. This will be held Outside XU-GYM beside Human Nature,  Link attached here for your reference: https://bit.ly/3mWxSOQ.
+Good day, __NAME__!
+
+Greetings from the Crusader Yearbook 2022!
+
+We weren't able to verify your account remaining balance over at the XU Finance as the office is unavailable, but fret not. Please request an assessment / Statement of account online over at XU Helpdesk, and present it over upon your claim if you don't have any outstanding balance. Alternatively, if you have your payment receipt for the yearbook will work just fine.
+
+And finally, congratulations! You’re nearing the last step of your photo package /& Yearbook claiming process. This email serves as a confirmation of your claiming schedule. We would like to remind you that your claiming schedule is set for __DATE__. This will be held Outside XU-GYM beside Human Nature,  Link attached here for your reference: https://bit.ly/3mWxSOQ.
 
 Note: Queuing cutoff will begin at 4:30, at exactly 5 we are going to close the distribution site as there is no electricity in the distribution site, hence it's gonna be dark.
 

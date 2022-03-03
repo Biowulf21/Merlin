@@ -510,6 +510,13 @@ p, li { white-space: pre-wrap; }
           <item>
            <widget class="QListWidget" name="failedListWidget"/>
           </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_2">
+            <property name="text">
+             <string>Copy Failed</string>
+            </property>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
