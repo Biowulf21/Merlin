@@ -642,7 +642,6 @@ p, li { white-space: pre-wrap; }
   </action>
  </widget>
  <resources>
-  <include location="QR Resource.qrc"/>
  </resources>
  <connections/>
 </ui>
