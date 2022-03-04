@@ -27,6 +27,7 @@ from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 from PyQt5.QtGui import QIcon
 from re import sub
 from smtplib import SMTP
+import pyperclip as pc
 
 from modules.settings import (HOST, PORT, SENDER, DISPLAY_NAME,
                               PASSWORD, RECIPIENT, MESSAGE_FILE)
@@ -56,6 +57,35 @@ class UI(QMainWindow):
         self.ui.actionSubject.triggered.connect(self.ChangeSubjectTemplate)
 
         self.ui.bulkEmailSender.clicked.connect(self.GetEmails)
+
+        self.ui.failed_button.clicked.connect(self.copyFailed)
+
+    def copyFailed(self):
+        failedlistcount = self.ui.failedListWidget.count()
+        items = []
+        items_string = ""
+        try:
+            for x in range(failedlistcount):
+                # copies all the items in the failed list widget and inputs into array
+                items.append(self.ui.failedListWidget.item(x).text())
+                items.append("\n")
+                items_string = "".join(items)
+                pc.copy(items_string)
+        except Exception as e:
+            print(e)
+        print(items_string)
+        print('done copying failed')
+        self.resendFailed(items_string)
+
+    def resendFailed(self, failed):
+        print('in resend Failed')
+        try:
+            self.ui.bulkEmailsTextEdit.clear()
+            print(f'failed is {failed}')
+            print(f'failed type is {type(failed)}')
+            self.ui.bulkEmailsTextEdit.setText(failed)
+        except Exception as e:
+            print(e)
 
     def GetEmails(self):
         #print('sulod sa get emails')
@@ -184,6 +214,7 @@ class UI(QMainWindow):
 
 # FIXME: Program reads Template but when editing, not pressing the save button (just exiting by pressing escape) still updates the template
 # Same case for both updating the email body template and for the subject template
+
 
     def ChangeSubjectTemplate(self):
         self.dg = QDialog()
