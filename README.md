@@ -23,21 +23,14 @@ Merlin was designed to help the Crusader Yearbook to send formatted bulk emails 
 - Collaborate with teammates using the Google Sheets dependency file
 - Real-time notification status change
 ## Dependencies
-1. [Git](https://desktop.github.com/)
-1. [Python](https://www.python.org/downloads/)
-1. [SMTPEmail](https://docs.python.org/3/library/smtplib.html) - `pip3 install smtplib`
-1. [Google Drive and Google Sheets API](https://www.youtube.com/watch?v=cnPlKLEGR7E&t=4s)
-1. [Markdown](https://pypi.org/project/Markdown/) - `pip3 install markdown`
-1. [PyQt5](https://pypi.org/project/PyQt5/) - `pip3 install PyQt5`
-1. [OAuth2Client](https://pypi.org/project/oauth2client/) - `pip3 install google.oauth2`
-1. [Gspread](https://pypi.org/project/gspread/) - `pip3 install gspread`  
-1. `merlin.json` - Ask from previous CYB Computer Systems Officer
+- All dependencies are listed in the `requirements.txt` file. Simple write ```pip install requirements.txt``` to install all dependencies.
 ## Installation
 1. Make sure all dependencies are installed on your system.
 1. Ask previous Computer System Officer for the `merlin.json` file as this will have the login token for the Google API. Copy this file into the root directory of Merlin.
 1. Clone the repository by typing: ``` git clone https://github.com/Biowulf21/Merlin.git```.
-1. After typing cloning the repository, make sure to add the directory of the repository to your $PYTHONPATH environment variable by typing:
-```export PYTHONPATH=/path/of/directory:${PYTHONPATH}```.   
+1. Open your terminal/commandline and navigate to the Merlin git repository.
+1. Run `python Merlin.py`.
+___
 ## Usage
 ### Bulk  
 1. Change the email body by going into __Settings > Change Template > Email Body/Email Subject__ and change the contents there to change the content of either the email body or subject. Alternatively, you can go ahead and open the `compose.md` and `emailSubject.txt` files to change the body and subject respectively.   __Note:__ The email body should be written in markdown. For more information on how to use markdown, check out this [link](https://www.markdownguide.org/cheat-sheet/).

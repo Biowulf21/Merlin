@@ -27,7 +27,6 @@ from PyQt5.QtWidgets import QApplication, QDialog, QMainWindow, QMessageBox
 from PyQt5.QtGui import QIcon
 from re import sub
 from smtplib import SMTP
-import pyperclip as pc
 
 from modules.settings import (HOST, PORT, SENDER, DISPLAY_NAME,
                               PASSWORD, RECIPIENT, MESSAGE_FILE)
@@ -70,7 +69,6 @@ class UI(QMainWindow):
                 items.append(self.ui.failedListWidget.item(x).text())
                 items.append("\n")
                 items_string = "".join(items)
-                pc.copy(items_string)
         except Exception as e:
             print(e)
         print(items_string)
