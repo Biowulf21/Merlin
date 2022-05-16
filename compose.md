@@ -7,21 +7,39 @@ Good day, __NAME__!
 
 Greetings from the Crusader Yearbook 2022!
 
-We weren't able to verify your account remaining balance over at the XU Finance as the office is unavailable, but fret not. Please request an assessment / Statement of account online over at XU Helpdesk, and present it over upon your claim if you don't have any outstanding balance. Alternatively, if you have your payment receipt for the yearbook will work just fine.
+Thank you so much for joining us in our __Crusader Yearbook 2022 Pictorials__! Now that the subscription period has officially ended, we would like to confirm if we have the correct data on your chosen package.   
 
-And finally, congratulations! You’re nearing the last step of your photo package /& Yearbook claiming process. This email serves as a confirmation of your claiming schedule. We would like to remind you that your claiming schedule is set for __DATE__. This will be held Outside XU-GYM beside Human Nature,  Link attached here for your reference: https://bit.ly/3mWxSOQ.
+According to our records, you chose __Package LINK__ worth __DATE__.   
 
-Note: Queuing cutoff will begin at 4:30, at exactly 5 we are going to close the distribution site as there is no electricity in the distribution site, hence it's gonna be dark.
+Package Descriptions are as follows:  
+  
+__Package A (PHP 3,600) Photo Package (Frame, hard and soft copies of your photos)__    
+Inclusions:  
+  
+- (1) 8x10 colored Toga Shot photos (framed)
+- (1) 5x7 colored Creative Shot photos
+- (4) 2x3 colored Toga Shot photos
+- (4) 2x3 colored Creative Shot photos
+- (5) 2x2 colored Business Shot photos
+- (10) 1x1 colored Business Shot photos
+- Hard Copy of Yearbook
 
-In line with this,  please understand that we have a strict implementation with the number of people we can accommodate within a given schedule. Thus, we advise you to strictly adhere to this schedule and to the safety protocols, for a smooth flow in claiming. For cases of late or non-appearance, please inform us to give you a fixed schedule when you are available. 
 
-Instruction in claiming your photo package /& Yearbook:
-- Please check your scheduled reservation.
-- Observe social distancing in the venue. 
-- Bring the following items with you: face mask, face shield, own ballpen, Higala QR Code, valid ID or university ID (for 2021 subscribers), and hard copy of signed authorization letter(s) if a representative.
-- Before claiming, sign the request form that will be given to you by the staff.
-- Check your photo package if it is yours or there is damage.
-- For other inquiries and concerns, you are free to send them through this email or through Facebook (Crusader Yearbook), and we will respond to you during our office hours: 9:00 AM to 4 PM (Monday to Saturday).
+__Package B (PHP 1,800) Photo Package (Frame, hard and soft copies of your photos)__   
+Inclusions:  
+  
+- (1) 8x10 colored Toga Shot photos (framed)
+- (1) 5x7 colored Creative Shot photos
+- (4) 2x3 colored Toga Shot photos
+- (4) 2x3 colored Creative Shot photos
+- (5) 2x2 colored Business Shot photos
+- (10) 1x1 colored Business Shot photos
+
+
+
+If this is incorrect, please message us on our Facebook page, or through our email.  
+
+Thank you.  
 
 __In service,__  
 __CYB 2022__

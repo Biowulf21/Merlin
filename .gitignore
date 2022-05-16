@@ -7,3 +7,4 @@ dist/
 /test/
 /.vscode/
 Merlin.sh
+/modules/settings.py
